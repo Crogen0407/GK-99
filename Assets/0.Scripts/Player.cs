@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     
     private Vector3 dir;
 
+    private CameraRotate _cameraRotate;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _cameraRotate = transform.Find("Main Camera").GetComponent<CameraRotate>();
     }
 
     void Start()
@@ -32,6 +34,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         transform.localPosition += dir * moveSpeed * Time.deltaTime;
-        
+        transform.eulerAngles = new Vector3(0,_cameraRotate.rotateY,0);
     }
 }
