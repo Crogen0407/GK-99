@@ -7,9 +7,9 @@ public class CameraRotate : MonoBehaviour
 {
     [SerializeField] private float _minRotateX;
     [SerializeField] private float _maxRotateX;
-    
+    [SerializeField] private float rotateSpeed = 50;
+
     private float rotateX;
-    public float rotateY;
     
     void Awake()
     {
@@ -19,8 +19,7 @@ public class CameraRotate : MonoBehaviour
     
     void Update()
     {
-        rotateX += Input.GetAxis("Mouse Y") * 3;
-        rotateY += Input.GetAxis("Mouse X") * 10;
+        rotateX += Input.GetAxis("Mouse Y") * rotateSpeed;
         clampingNumberX = Mathf.Clamp(rotateX, _minRotateX, _maxRotateX);
         transform.eulerAngles = new Vector3(-clampingNumberX , transform.eulerAngles.y, transform.eulerAngles.z);
     }

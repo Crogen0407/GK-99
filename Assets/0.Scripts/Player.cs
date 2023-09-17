@@ -8,11 +8,16 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float moveSpeed=10;
+    public bool isGround;
+    
+    [SerializeField] private float rotateSpeed = 50;
     private PlayerInput _playerInput;
     
     private Vector3 dir;
 
     private CameraRotate _cameraRotate;
+    private float rotateY;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -33,7 +38,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        transform.localPosition += dir * moveSpeed * Time.deltaTime;
-        transform.eulerAngles = new Vector3(0,_cameraRotate.rotateY,0);
+        rotateY -= Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
+
+        Vector3 vec = new Vector3(Mathf.Cos(rotateY), 0, Mathf.Sin(rotateY)).normalized;
+        transform.forward = vec;
+        transform.Translate( dir * moveSpeed * Time.deltaTime, Space.Self);
     }
 }
