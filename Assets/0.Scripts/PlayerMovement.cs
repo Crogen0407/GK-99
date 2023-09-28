@@ -96,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _rigidbody.drag = 0;
         }
-        print(isGrounded);
     }
 
     private void FixedUpdate()

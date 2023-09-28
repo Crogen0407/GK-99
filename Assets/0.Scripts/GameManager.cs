@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    public PlayerMovement playerMovement;
     public bool isUIMode;
     
     private void Awake()
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
     
     private void OnMouseClick(InputValue value)
