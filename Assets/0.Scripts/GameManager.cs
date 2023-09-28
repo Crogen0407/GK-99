@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     
     private void OnMouseClick(InputValue value)
     {
-        Debug.Log("dd");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

@@ -2,80 +2,65 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed=10;
-
     [Header("View")] 
+    public SO_EnemyData enemyData;
     [SerializeField] private bool DebugMode;
-
-    [SerializeField] [Range(0, 360)] private float _viewAngle;
-    [SerializeField] float _viewRadius = 1f;
-    private List<Collider> hitTargetList;
-    [SerializeField] LayerMask _targetMask;
-    [SerializeField] LayerMask _obstacleMask;
+    private float _viewAngle;
+    float _viewRadius = 1f;
+    [SerializeField] private LayerMask _targetMask;
+    [SerializeField] private LayerMask _obstacleMask;
     private Vector3 _moveDirection;
-    
-    private GameManager _gameManager;
-    private PlayerMovement _playerMovement;
 
+    //Components
+    private NavMeshAgent agent;
+    
+    //Managements
+    private GameManager _gameManager;
     
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _playerMovement = _gameManager.playerMovement;
-        hitTargetList = new List<Collider>();
-    }
-
-    void Update()
-    {
-        print(transform.forward);
-        CheckCollider();
+        agent = GetComponent<NavMeshAgent>();
+        
+        agent.speed = enemyData.moveSpeed;
+        agent.stoppingDistance = enemyData.attackDistance;
+        _viewAngle = enemyData.viewAngle;
+        _viewRadius = enemyData.viewRadius;
     }
 
     private void FixedUpdate()
     {
-        throw new NotImplementedException();
+        CheckCollider();
     }
 
     private void CheckCollider()
     {
-        hitTargetList.Clear();
         Collider[] target = Physics.OverlapSphere(_moveDirection, _viewRadius, _targetMask);
 
         if (target.Length == 0) return;
-        Vector3 targetDir = Vector3.zero;
+        Vector3 targetDir = Vector3.positiveInfinity;
+        
         foreach (Collider coll in target)
         {
-            print("df");
             Vector3 targetVec = coll.transform.position;
             targetDir = (targetVec - _moveDirection).normalized;
             targetDir.y = 0;
-            float targetAngle = Mathf.Rad2Deg * Mathf.Atan2((targetVec - transform.position).z, (targetVec - transform.position).x) - 90 + transform.eulerAngles.y;
-            if (Mathf.Abs(targetAngle) <= _viewAngle * 0.5f)
+            float targetAngle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(transform.forward, targetDir));
+            print(targetAngle);
+            if (targetAngle  <= _viewAngle * 0.5f)
             {
+                float distance = Vector3.Distance(coll.transform.position, transform.position);
                 Debug.DrawRay(transform.position, targetDir * Vector3.Distance(coll.transform.position, transform.position), Color.green);
-                hitTargetList.Add(coll);
+                if (!Physics.Raycast(transform.position, targetDir * distance, distance, _obstacleMask))
+                {
+                    agent.SetDestination(coll.transform.position);
+                }
             }
         }
-
-        //가장 가까운 물체로의 방향 구하기
-        Collider minDistanceCollider = hitTargetList[0];
-        Vector3 mainTargetDir = Vector3.zero;
-
-        foreach (Collider hitTarget in hitTargetList)
-        {
-            if (Vector3.Distance(transform.position,minDistanceCollider.transform.position)
-                >= Vector3.Distance(transform.position,hitTarget.transform.position))
-            {
-                minDistanceCollider = hitTarget;
-                mainTargetDir = (minDistanceCollider.transform.position - transform.position).normalized;
-            }
-        }
-        Debug.DrawRay(transform.position, mainTargetDir * Vector3.Distance(minDistanceCollider.transform.position, transform.position), Color.red);
-
     }
    
     private void OnDrawGizmos()
@@ -100,5 +85,4 @@ public class EnemyMovement : MonoBehaviour
         float radAngle = angle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(radAngle), 0, Mathf.Cos(radAngle));
     }
-    
 }
