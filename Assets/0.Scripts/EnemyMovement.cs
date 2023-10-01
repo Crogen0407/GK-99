@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("View")] 
+    [SerializeField] private Vector3 Offset;
     public SO_EnemyData enemyData;
     [SerializeField] private bool DebugMode;
     private float _viewAngle;
@@ -16,7 +17,9 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 _moveDirection;
 
     //Components
-    private NavMeshAgent agent;
+    private NavMeshAgent _agent;
+    private Animator _animator;
+    private Rigidbody _rigidbody;
     
     //Managements
     private GameManager _gameManager;
@@ -24,16 +27,38 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         _gameManager = GameManager.Instance;
-        agent = GetComponent<NavMeshAgent>();
         
-        agent.speed = enemyData.moveSpeed;
-        agent.stoppingDistance = enemyData.attackDistance;
+        //GetComponents
+        _agent = GetComponent<NavMeshAgent>();
+        _animator = transform.Find("Model").GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _agent.speed = enemyData.moveSpeed;
+        _agent.stoppingDistance = enemyData.attackDistance;
         _viewAngle = enemyData.viewAngle;
         _viewRadius = enemyData.viewRadius;
     }
 
     private void FixedUpdate()
     {
+        if (_rigidbody.velocity.x>0.3f || _rigidbody.velocity.y>0.3f || _rigidbody.velocity.z>0.3f)
+        {
+            _animator.SetBool("IsMove", true);
+            if (_agent.speed >= enemyData.moveSpeed)
+            {
+                if (_agent.speed >= enemyData.moveSpeed * 2)
+                {
+                    _animator.SetInteger("SpeedState", 1);
+                }
+                else
+                {
+                    _animator.SetInteger("SpeedState", 0);
+                }
+            }
+        }
+        else
+        {
+            _animator.SetBool("IsMove", false);
+        }
         CheckCollider();
     }
 
@@ -42,22 +67,20 @@ public class EnemyMovement : MonoBehaviour
         Collider[] target = Physics.OverlapSphere(_moveDirection, _viewRadius, _targetMask);
 
         if (target.Length == 0) return;
-        Vector3 targetDir = Vector3.positiveInfinity;
+        Vector3 targetDir = Vector3.zero;
         
         foreach (Collider coll in target)
         {
             Vector3 targetVec = coll.transform.position;
             targetDir = (targetVec - _moveDirection).normalized;
-            targetDir.y = 0;
             float targetAngle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(transform.forward, targetDir));
-            print(targetAngle);
             if (targetAngle  <= _viewAngle * 0.5f)
             {
                 float distance = Vector3.Distance(coll.transform.position, transform.position);
-                Debug.DrawRay(transform.position, targetDir * Vector3.Distance(coll.transform.position, transform.position), Color.green);
-                if (!Physics.Raycast(transform.position, targetDir * distance, distance, _obstacleMask))
+                Debug.DrawRay(_moveDirection, targetDir * Vector3.Distance(coll.transform.position, transform.position), Color.green);
+                if (!Physics.Raycast(_moveDirection, targetDir * distance, distance, _obstacleMask))
                 {
-                    agent.SetDestination(coll.transform.position);
+                    _agent.SetDestination(coll.transform.position);
                 }
             }
         }
@@ -67,7 +90,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (DebugMode)
         {
-            _moveDirection = transform.position;
+            _moveDirection = transform.position + Offset;
             Gizmos.DrawWireSphere(_moveDirection, _viewRadius);
 
             Vector3 rightDir = AngleToDir(transform.eulerAngles.y + _viewAngle * 0.5f);

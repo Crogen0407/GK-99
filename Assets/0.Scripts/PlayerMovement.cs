@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     
     public Transform orientation;
     private Vector3 moveDirection;
-    
+    private Transform model;
     
     private float rotateY;
     
@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
+        model = transform.Find("Model");
     }
 
     void Start()
@@ -100,9 +101,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        model.forward = orientation.forward;
         SpeedControl();
     }
 }
