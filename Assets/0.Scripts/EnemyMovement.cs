@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
         
         //GetComponents
         _agent = GetComponent<NavMeshAgent>();
-        _animator = transform.Find("Model").GetComponent<Animator>();
+        //_animator = transform.Find("Model").GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _agent.speed = enemyData.moveSpeed;
         _agent.stoppingDistance = enemyData.attackDistance;
@@ -40,25 +40,25 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_rigidbody.velocity.x>0.3f || _rigidbody.velocity.y>0.3f || _rigidbody.velocity.z>0.3f)
-        {
-            _animator.SetBool("IsMove", true);
-            if (_agent.speed >= enemyData.moveSpeed)
-            {
-                if (_agent.speed >= enemyData.moveSpeed * 2)
-                {
-                    _animator.SetInteger("SpeedState", 1);
-                }
-                else
-                {
-                    _animator.SetInteger("SpeedState", 0);
-                }
-            }
-        }
-        else
-        {
-            _animator.SetBool("IsMove", false);
-        }
+        // if (_rigidbody.velocity.x>0.3f || _rigidbody.velocity.y>0.3f || _rigidbody.velocity.z>0.3f)
+        // {
+        //     _animator.SetBool("IsMove", true);
+        //     if (_agent.speed >= enemyData.moveSpeed)
+        //     {
+        //         if (_agent.speed >= enemyData.moveSpeed * 2)
+        //         {
+        //             _animator.SetInteger("SpeedState", 1);
+        //         }
+        //         else
+        //         {
+        //             _animator.SetInteger("SpeedState", 0);
+        //         }
+        //     }
+        // }
+        // else
+        // {
+        //     _animator.SetBool("IsMove", false);
+        // }
         CheckCollider();
     }
 
