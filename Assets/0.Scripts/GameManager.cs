@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+       
     }
     
     private void OnMouseClick(InputValue value)

@@ -23,7 +23,6 @@ public class PlayerFollower : MonoBehaviour
     {
         Move();
     }
-
     
     private void Move()
     {
