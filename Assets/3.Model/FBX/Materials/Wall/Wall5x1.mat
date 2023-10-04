@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall
+  m_Name: Wall5x1
   m_Shader: {fileID: -6465566751694194690, guid: 1c0bd8e1c701d624bb15cbf5dd3441e8,
     type: 3}
   m_Parent: {fileID: 0}
@@ -111,7 +111,7 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -144,7 +144,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tile: {r: 10, g: 1, b: 0, a: 0}
+    - _Tile: {r: 5, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5237802622949777839
 MonoBehaviour:
