@@ -87,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        model.forward = orientation.forward;
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (isGrounded)
@@ -101,9 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        model.forward = orientation.forward;
         SpeedControl();
     }
 }
