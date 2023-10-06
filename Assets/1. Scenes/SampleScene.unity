@@ -3429,7 +3429,7 @@ GameObject:
   - component: {fileID: 915042877}
   - component: {fileID: 915042876}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Potal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3456,7 +3456,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2124705421725058983, guid: da9275f7c89671046925c09500871227, type: 3}
 --- !u!23 &915042877
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3506,7 +3506,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915042875}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2124705421725058983, guid: da9275f7c89671046925c09500871227, type: 3}
 --- !u!4 &915042879
 Transform:
   m_ObjectHideFlags: 0
@@ -3515,13 +3515,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915042875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.661, y: 3.8604329, z: -75.37607}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 45, y: 3, z: -38}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &920654230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6139598716797088921, guid: 0df160b457028e742b7660c3a879bcef,
