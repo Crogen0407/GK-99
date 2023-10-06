@@ -66,9 +66,10 @@ Material:
     - _DstBlend: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 2.1
+    - _Scale: 2.49
+    - _Speed: 84.45
     - _SrcBlend: 5
-    - _Stength: 12.61
+    - _Stength: 6.05
     - _Surface: 1
     - _ZTest: 4
     - _ZWrite: 0
