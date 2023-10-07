@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnJump()
-    {            
-                Invoke(nameof(ResetJump), jumpCooldown);
+    {
+        Invoke(nameof(ResetJump), jumpCooldown);
 
         if (readyTojump && isGrounded)
         {
