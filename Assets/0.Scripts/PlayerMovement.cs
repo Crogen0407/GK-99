@@ -33,8 +33,23 @@ public class PlayerMovement : MonoBehaviour
     //Components
     private Rigidbody _rigidbody;
 
+    //Camera Rotate
+    public float sensX;
+    public float sensY;
+    
+    private float xRotation;
+    private float yRotation;
+    
+    [SerializeField] private float _minRotateX;
+    [SerializeField] private float _maxRotateX;
+    
+    float clampingNumberX = 0;
+
+    private Camera _mainCamera;
+    
     private void Awake()
     {
+        _mainCamera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
         model = transform.Find("Model");
@@ -51,18 +66,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 vec = value.Get<Vector2>();
         horizontalInput = vec.x;
         verticalInput = vec.y;
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
-        
-        //limit velocity if need
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            _rigidbody.velocity = new Vector3(limitedVel.x, _rigidbody.velocity.y, limitedVel.z);
-        }
     }
 
     private void OnJump()
@@ -84,11 +87,25 @@ public class PlayerMovement : MonoBehaviour
     {
         readyTojump = true;
     }
-    
+
     private void Update()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         model.forward = orientation.forward;
+       
+    }
+
+    private void FixedUpdate()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        yRotation += mouseX;
+        _mainCamera.transform.eulerAngles = new Vector3(0,yRotation, 0);
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, _minRotateX, _maxRotateX);
+        transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
+        
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (isGrounded)
@@ -99,12 +116,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _rigidbody.drag = 0;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        SpeedControl();
+        
+        Vector3 vec = moveDirection.normalized * moveSpeed;
+        _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
+        
     }
 }
 
