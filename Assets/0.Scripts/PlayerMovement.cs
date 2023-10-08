@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     //Components
     private Rigidbody _rigidbody;
 
+<<<<<<< HEAD
     //Camera Rotate
     public float sensX;
     public float sensY;
@@ -47,9 +48,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera _mainCamera;
     
+=======
+>>>>>>> parent of fb63e91 (타일링 노가다중...)
     private void Awake()
     {
-        _mainCamera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
         model = transform.Find("Model");
@@ -66,6 +68,18 @@ public class PlayerMovement : MonoBehaviour
         Vector2 vec = value.Get<Vector2>();
         horizontalInput = vec.x;
         verticalInput = vec.y;
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
+        
+        //limit velocity if need
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            _rigidbody.velocity = new Vector3(limitedVel.x, _rigidbody.velocity.y, limitedVel.z);
+        }
     }
 
     private void OnJump()
@@ -87,11 +101,12 @@ public class PlayerMovement : MonoBehaviour
     {
         readyTojump = true;
     }
-
+    
     private void Update()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         model.forward = orientation.forward;
+<<<<<<< HEAD
        
     }
 
@@ -106,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, _minRotateX, _maxRotateX);
         transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
         
+=======
+>>>>>>> parent of fb63e91 (타일링 노가다중...)
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (isGrounded)
@@ -120,6 +137,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 vec = moveDirection.normalized * moveSpeed;
         _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
         
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        SpeedControl();
     }
 }
 
