@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     //Components
     private Rigidbody _rigidbody;
 
+<<<<<<< HEAD
     //Camera Rotate
     public float sensX;
     public float sensY;
@@ -47,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera _mainCamera;
     
+=======
+>>>>>>> parent of fb63e91 (타일링 노가다중...)
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -103,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         model.forward = orientation.forward;
+<<<<<<< HEAD
        
     }
 
@@ -116,6 +120,9 @@ public class PlayerMovement : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, _minRotateX, _maxRotateX);
         transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
+        
+=======
+>>>>>>> parent of fb63e91 (타일링 노가다중...)
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (isGrounded)
@@ -130,6 +137,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 vec = moveDirection.normalized * moveSpeed;
         _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
         
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        SpeedControl();
     }
 }
 

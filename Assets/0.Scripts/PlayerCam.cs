@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerCam : MonoBehaviour
 {
+<<<<<<< HEAD
+    
+=======
     public float sensX;
     public float sensY;
 
@@ -36,4 +39,5 @@ public class PlayerCam : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, _minRotateX, _maxRotateX);
         transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
     }
+>>>>>>> parent of fb63e91 (타일링 노가다중...)
 }
