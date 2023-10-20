@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDead
 {
     [Header("Movement")]
     public float moveSpeed=10;
@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded;
     
-    
     public Transform orientation;
     private Vector3 moveDirection;
     private Transform model;
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     
     //Components
     private Rigidbody _rigidbody;
+    private HealthSystem _healthSystem;
     
     //Camera Rotate
     public Camera _mainCamera;
@@ -49,14 +49,27 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _mainCamera = Camera.main;
+        
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
+        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem.Dead += Dead;
         model = transform.Find("Model");
     }
 
     void Start()
     {
         _gameManager = GameManager.Instance;
+    }
+
+    public void Dead()
+    {
+        
+    }
+
+    public void Revival()
+    {
+        
     }
 
     private void OnMove(InputValue value)
