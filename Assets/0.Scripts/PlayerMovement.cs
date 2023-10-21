@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         
     }
-
+    
     private void OnMove(InputValue value)
     {
         Vector2 vec = value.Get<Vector2>();
