@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Volume Settings
         Bloom bloom = new Bloom();
         Volume.profile.TryGet<Bloom>(out bloom);
-        bloom.intensity.value = 100;
     }
 
 
