@@ -70,11 +70,11 @@ Material:
     - _Speed: 0.05
     - _SrcBlend: 1
     - _Surface: 0
-    - _Tiling: 9.23
+    - _Tiling: 6.92
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _EmssitionColor: {r: 5.0202513, g: 0.5565033, b: 0, a: 1}
+    - _EmssitionColor: {r: 2.5101256, g: 0.27825165, b: 0, a: 1}
     - _MainColor: {r: 0.2, g: 0.07044479, b: 0.0039215684, a: 1}
   m_BuildTextureStacks: []
