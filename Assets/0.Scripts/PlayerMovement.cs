@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDead
 {
     [Header("Movement")]
     public float moveSpeed=10;
@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded;
     
-    
     public Transform orientation;
     private Vector3 moveDirection;
     private Transform model;
@@ -32,11 +31,29 @@ public class PlayerMovement : MonoBehaviour
     
     //Components
     private Rigidbody _rigidbody;
+    private HealthSystem _healthSystem;
+    
+    //Camera Rotate
+    public Camera _mainCamera;
+    public float sensX;
+    public float sensY;
 
+    private float xRotation;
+    private float yRotation;
+    
+    [SerializeField] private float _minRotateX;
+    [SerializeField] private float _maxRotateX;
+    
+    float clampingNumberX = 0;
+    
     private void Awake()
     {
+        _mainCamera = Camera.main;
+        
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
+        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem.Dead += Dead;
         model = transform.Find("Model");
     }
 
@@ -44,8 +61,17 @@ public class PlayerMovement : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
     }
-    
 
+    public void Dead()
+    {
+        
+    }
+
+    public void Revival()
+    {
+        
+    }
+    
     private void OnMove(InputValue value)
     {
         Vector2 vec = value.Get<Vector2>();
@@ -53,21 +79,9 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = vec.y;
     }
 
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
-        
-        //limit velocity if need
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            _rigidbody.velocity = new Vector3(limitedVel.x, _rigidbody.velocity.y, limitedVel.z);
-        }
-    }
-
     private void OnJump()
-    {            
-                Invoke(nameof(ResetJump), jumpCooldown);
+    {
+        Invoke(nameof(ResetJump), jumpCooldown);
 
         if (readyTojump && isGrounded)
         {
@@ -84,9 +98,25 @@ public class PlayerMovement : MonoBehaviour
     {
         readyTojump = true;
     }
-    
+
     private void Update()
     {
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        yRotation += mouseX;
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, _minRotateX, _maxRotateX);
+        _mainCamera.transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
+        
+        moveDirection = new Vector3(orientation.forward.x,0,orientation.forward.z) * verticalInput + orientation.right * horizontalInput;
+        model.forward = orientation.forward;
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 vec = moveDirection.normalized * moveSpeed;
+        _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
+        
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (isGrounded)
@@ -97,14 +127,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _rigidbody.drag = 0;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        _rigidbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        model.forward = orientation.forward;
-        SpeedControl();
     }
 }
 
