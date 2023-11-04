@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestEnemyData
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
-  viewAngle: 114
+  viewAngle: 250
   viewRadius: 10.56
   attackDistance: 2

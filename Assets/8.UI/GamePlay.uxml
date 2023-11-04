@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/8.UI/GamePlay.uss?fileID=7433441132597879392&amp;guid=c5c8751bbc7b2bd4fa4fe796099fd29e&amp;type=3#GamePlay" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement style="width: 300px; height: 200px; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px;">
+            <ui:Label tabindex="-1" text="&lt;size=150&gt;1&lt;/size&gt; combo" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="-unity-text-align: upper-left; font-size: 60px; white-space: normal;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement style="height: 225px; flex-direction: row;">
+        <ui:VisualElement style="flex-grow: 1;" />
+        <ui:VisualElement name="hp-box" style="flex-grow: 1;">
+            <ui:VisualElement style="flex-grow: 1; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; background-color: rgb(255, 0, 0);" />
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; background-color: rgb(0, 19, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
