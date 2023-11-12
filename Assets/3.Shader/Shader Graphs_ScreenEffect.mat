@@ -38,12 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Breathing: 1
-    - _NoisingEffect: 0
-    - _OnlyWhiteAndBlack: 1
+    - _Breathing: 0
+    - _IsNoising: 0
+    - _NoisingEffect: 1
+    - _OnlyWhiteAndBlack: 0
     - _Twist: 1
     - _TwistNoiseStrength: 0.863
     - _TwistStrength: 9.17
     m_Colors:
-    - _NoiseColor: {r: 0.45911944, g: 0.76613873, b: 1, a: 1}
+    - _NoiseColor: {r: 0, g: 0.64670134, b: 1, a: 1}
   m_BuildTextureStacks: []
