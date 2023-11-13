@@ -43,7 +43,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -159,7 +159,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -190,7 +190,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -221,7 +221,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -274,7 +274,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -330,7 +330,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -387,10 +387,10 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -446,7 +446,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -505,7 +505,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -533,10 +533,10 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8222673039997979004}
@@ -692,7 +692,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -751,7 +751,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -845,7 +845,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -876,7 +876,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -907,7 +907,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -966,7 +966,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Uppercut
@@ -1003,7 +1003,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -1034,7 +1034,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -1062,7 +1062,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Ready
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Uppercut
@@ -1093,7 +1093,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9172274775379251227}
@@ -1152,7 +1152,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -1183,7 +1183,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -1208,7 +1208,7 @@ AnimatorController:
   m_Name: Arm
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Drection
+  - m_Name: Direction
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1321,7 +1321,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -1380,7 +1380,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1493922920044421446}
@@ -1517,7 +1517,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -1548,7 +1548,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -1579,7 +1579,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -1607,7 +1607,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -1703,10 +1703,10 @@ AnimatorStateMachine:
     m_Position: {x: 530, y: 940, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8222673039997979004}
-    m_Position: {x: -210, y: -110, z: 0}
+    m_Position: {x: -180, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6259032465822712452}
-    m_Position: {x: -400, y: -10, z: 0}
+    m_Position: {x: -540, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9172274775379251227}
     m_Position: {x: 860, y: -80, z: 0}
@@ -1724,9 +1724,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -600, y: -50, z: 0}
-  m_EntryPosition: {x: -600, y: -10, z: 0}
-  m_ExitPosition: {x: 1120, y: 280, z: 0}
+  m_AnyStatePosition: {x: -740, y: -40, z: 0}
+  m_EntryPosition: {x: -740, y: 0, z: 0}
+  m_ExitPosition: {x: 1200, y: 290, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6259032465822712452}
 --- !u!1101 &4774189308440217112
@@ -1741,7 +1741,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -1772,7 +1772,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1493922920044421446}
@@ -1856,7 +1856,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -1915,7 +1915,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -1943,7 +1943,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: Guard
@@ -1977,7 +1977,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -2008,7 +2008,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1493922920044421446}
@@ -2061,7 +2061,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4172225194141237894}
@@ -2092,7 +2092,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
@@ -2123,7 +2123,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hook
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8360236508007207298}
@@ -2151,7 +2151,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Uppercut
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1493922920044421446}
@@ -2182,7 +2182,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3351547150515999032}
@@ -2248,7 +2248,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Jap
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Drection
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4132186174132199286}
