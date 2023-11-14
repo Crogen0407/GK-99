@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour, IDead
     public float sensX;
     public float sensY;
 
+    //Action
+    public Action<CurrentAnimation, bool> ChangeAnimationAction;
+    public Action ChangeAnimationGameOverAction;
     private float xRotation;
     private float yRotation;
     
@@ -71,6 +75,12 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         
     }
+
+    private void OnAttackStateChange(InputValue value)
+    {
+        float a = value.Get<float>();
+        Debug.Log(a);
+    }
     
     private void OnMove(InputValue value)
     {
@@ -98,7 +108,7 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         readyTojump = true;
     }
-
+    
     private void Update()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;

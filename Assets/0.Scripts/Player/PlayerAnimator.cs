@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public enum CurrentAnimation
@@ -15,6 +16,7 @@ public enum CurrentAnimation
 
 public class PlayerAnimator : MonoBehaviour
 {
+    
     private PlayerMovement _playerMovement;
     private Animator _animator;
     
@@ -22,6 +24,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _animator = transform.Find("Model").Find("Arm").GetComponent<Animator>();
+        _playerMovement.ChangeAnimationAction += ChangeAnimation;
+        _playerMovement.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
     }
 
     private void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
@@ -32,7 +36,6 @@ public class PlayerAnimator : MonoBehaviour
     private void ChangeAnimationGameOver()
     {
         _animator.SetTrigger("GameOver");
-
     }
     
     void Update()
