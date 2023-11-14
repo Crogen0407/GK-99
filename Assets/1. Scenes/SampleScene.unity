@@ -8136,7 +8136,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 50
+  far clip plane: 100
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -9213,10 +9213,6 @@ MonoBehaviour:
     m_Bits: 64
   orientation: {fileID: 330585546}
   _mainCamera: {fileID: 0}
-  sensX: 200
-  sensY: 230
-  _minRotateX: -65
-  _maxRotateX: 40
 --- !u!54 &373239214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29252,7 +29248,7 @@ MonoBehaviour:
     FieldOfView: 60.000004
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 50
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -29275,7 +29271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939991551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.055794686, y: 0.32583907, z: -0.019267125, w: 0.9435808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.72, y: 2.33, z: 19.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29295,6 +29291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb09e694a04bf154f91da5c1ce237f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensX: 200
+  sensY: 230
+  _minRotateX: -45
+  _maxRotateX: 60
 --- !u!1001 &946067192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51776,8 +51776,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 10
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 100
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1906398801
 MonoBehaviour:
@@ -51809,8 +51809,8 @@ MonoBehaviour:
     Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_AccelTime: 0.01
+    m_DecelTime: 0.01
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
