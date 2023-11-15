@@ -7,13 +7,17 @@ public class PlayerMovement : MonoBehaviour, IDead
 {
     [Header("Movement")]
     public float moveSpeed=10;
-
+    public float jumpForce=10;
+    public float dashForce = 20;
+    
+    private bool jumpSpeedUp;
+    
     public float groundDrag;
 
     private float horizontalInput;
     private float verticalInput;
     
-    public float jumpForce;
+    
     public float jumpCooldown;
     private bool readyTojump;
     
@@ -61,6 +65,10 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
+        
+        ResetJump();
+        JumpCheck();
+        OnJump();
     }
 
     public void Dead()
@@ -102,8 +110,24 @@ public class PlayerMovement : MonoBehaviour, IDead
                 _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             
             }
-    }
+        }
 
+        private void OnAttackStateChange()
+        {
+            
+        }
+
+        private void OnAttack()
+        {
+            
+        }
+
+        private void OnDash()
+        {
+            Vector3 direction = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+            Debug.Log("dfdf");
+            _rigidbody.AddForce(direction * dashForce, ForceMode.Impulse);
+        }
     #endregion
     
     private void ResetJump()

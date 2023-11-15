@@ -12,7 +12,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public HealthSystem playerHealthSystem;
     public PlayerMovement playerMovement;
-    public PlayerAnimator playerAnimator;
     public bool isUIMode;
     private bool gameOver;
 
@@ -31,7 +30,7 @@ public class GameManager : MonoSingleton<GameManager>
                 else
                 {
                     //fail GameClear
-                    playerAnimator.ChangeAnimationGameOver();
+                    playerMovement.ChangeAnimationGameOverAction?.Invoke();
                 }
                 
             }
@@ -41,7 +40,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        playerAnimator = playerMovement.transform.GetComponent<PlayerAnimator>();
         playerHealthSystem = playerMovement.transform.GetComponent<HealthSystem>();
     }
 

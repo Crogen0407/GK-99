@@ -42,7 +42,7 @@ public class CinemachinePOVExtension : CinemachineExtension
             if (stage == CinemachineCore.Stage.Aim)
             {
                 if (startRotate == null) startRotate = GameManager.Instance.playerMovement.transform.eulerAngles;
-                transform.eulerAngles = transform.eulerAngles + new Vector3(0,Input.mousePosition.x, 0);
+                transform.eulerAngles += new Vector3(0,Input.mousePosition.x, 0);
                 
                 float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
                 float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
@@ -70,7 +70,6 @@ public class CinemachinePOVExtension : CinemachineExtension
             
                 _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amplitude * percentTime;
                 _cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequency * percentTime;
-                Debug.Log("dfdf");
                 yield return null;
             }
             _cinemachineBasicMultiChannelPerlin.enabled = false;

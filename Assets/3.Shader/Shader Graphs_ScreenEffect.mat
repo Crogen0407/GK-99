@@ -38,6 +38,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlurArea: 0.93
+    - _BlurEffect: 1
+    - _BlurStrength: 5.5
     - _Breathing: 0
     - _IsNoising: 0
     - _NoisingEffect: 1

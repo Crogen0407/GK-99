@@ -49,15 +49,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "SpeedUp",
-                    "type": "Button",
-                    "id": "25d06823-ba8f-478b-9910-e3422959af84",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -152,22 +143,11 @@
                 {
                     "name": "",
                     "id": "46f2a69f-0bef-4a04-8949-900478e46e7c",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ecb4329c-7bd2-40d8-bbaf-94c2482c23d3",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpeedUp",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
