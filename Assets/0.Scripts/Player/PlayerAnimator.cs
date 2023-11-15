@@ -28,12 +28,12 @@ public class PlayerAnimator : MonoBehaviour
         _playerMovement.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
     }
 
-    private void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
+    public void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
     {
         _animator.SetBool(currentAnimation.ToString(), parameter);
     }
     
-    private void ChangeAnimationGameOver()
+    public void ChangeAnimationGameOver()
     {
         _animator.SetTrigger("GameOver");
     }

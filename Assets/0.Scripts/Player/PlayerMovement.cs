@@ -76,31 +76,36 @@ public class PlayerMovement : MonoBehaviour, IDead
     private void OnAttackStateChange(InputValue value)
     {
         float a = value.Get<float>();
-        Debug.Log(a);
-    }
-    
-    private void OnMove(InputValue value)
-    {
-        Vector2 vec = value.Get<Vector2>();
-        horizontalInput = vec.x;
-        verticalInput = vec.y;
+        Debug.Log(Time.realtimeSinceStartup + " : " + a);
     }
 
-    private void OnJump()
-    {
-        Invoke(nameof(ResetJump), jumpCooldown);
+    #region InputSystem
 
-        if (readyTojump && isGrounded)
+        //Set Move Direction
+        private void OnMove(InputValue value)
         {
-            readyTojump = false;
-        
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
-        
-            _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        
+            Vector2 vec = value.Get<Vector2>();
+            horizontalInput = vec.x;
+            verticalInput = vec.y;
         }
+        
+        private void OnJump()
+        {
+            Invoke(nameof(ResetJump), jumpCooldown);
+        
+            if (readyTojump && isGrounded)
+            {
+                readyTojump = false;
+            
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+            
+                _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            
+            }
     }
 
+    #endregion
+    
     private void ResetJump()
     {
         readyTojump = true;
@@ -118,7 +123,7 @@ public class PlayerMovement : MonoBehaviour, IDead
         _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
         if (vec.magnitude >= 0.1f)
         {
-            _cinemachinePovExtension.StartCameraShake(0.2f, 10);
+            _cinemachinePovExtension.StartCameraShake(0.5f, 5);
         }
         else
         {
@@ -126,7 +131,7 @@ public class PlayerMovement : MonoBehaviour, IDead
         }
     }
 
-    private void Jump()
+    private void JumpCheck()
     {
         //ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
@@ -148,7 +153,7 @@ public class PlayerMovement : MonoBehaviour, IDead
     private void FixedUpdate()
     {
         Move();
-        Jump();
+        JumpCheck();
     }
 }
 
