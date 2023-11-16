@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5000623317633523588}
   - component: {fileID: 4841419985071316880}
   - component: {fileID: 4137316216376374139}
-  - component: {fileID: 2653990265678033083}
+  - component: {fileID: 4774113338527366123}
   m_Layer: 0
   m_Name: Wall1x1
   m_TagString: Ground
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2653990265678033083
+--- !u!114 &4774113338527366123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

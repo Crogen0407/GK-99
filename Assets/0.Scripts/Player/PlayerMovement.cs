@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -125,9 +126,9 @@ public class PlayerMovement : MonoBehaviour, IDead
         private void OnDash()
         {
             Vector3 direction = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
-            Debug.Log("dfdf");
             _rigidbody.AddForce(direction * dashForce, ForceMode.Impulse);
         }
+
     #endregion
     
     private void ResetJump()

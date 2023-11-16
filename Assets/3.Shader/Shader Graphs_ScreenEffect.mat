@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BlurArea: 0.93
-    - _BlurEffect: 1
+    - _BlurEffect: 0
     - _BlurStrength: 5.5
     - _Breathing: 0
     - _IsNoising: 0
