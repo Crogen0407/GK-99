@@ -9063,7 +9063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 10
-  dashForce: 4
+  dashForce: 6
   groundDrag: 4
   jumpCooldown: 0.25
   dashDelay: 5

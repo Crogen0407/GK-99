@@ -136,7 +136,9 @@ public class PlayerMovement : MonoBehaviour, IDead
 
         private void OnAttack()
         {
-            
+            Debug.Log("dfsdf");
+            ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
+            ChangeAnimationAction?.Invoke(CurrentAnimation.Jap, true);
         }
         
         private void OnDash()

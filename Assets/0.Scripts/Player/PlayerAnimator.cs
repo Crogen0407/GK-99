@@ -30,6 +30,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
     {
+        Debug.Log(currentAnimation);
         _animator.SetBool(currentAnimation.ToString(), parameter);
     }
     
