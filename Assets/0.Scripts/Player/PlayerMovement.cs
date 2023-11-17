@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Tweening;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IDead
@@ -18,10 +19,13 @@ public class PlayerMovement : MonoBehaviour, IDead
     private float horizontalInput;
     private float verticalInput;
     
-    
     public float jumpCooldown;
+    public float dashDelay= 5;
+    private float _currentdelayTimer;
     private bool readyTojump;
-    
+    private bool _dashing;
+    private Vector3 dashEndPoint;
+
     [Header("Ground Check")] 
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -32,10 +36,11 @@ public class PlayerMovement : MonoBehaviour, IDead
     private Transform model;
     
     private float rotateY;
-    
+
     //Managements
     private GameManager _gameManager;
     private CinemachinePOVExtension _cinemachinePovExtension;
+    private ScreenEffectController _screenEffectController;
     
     //Components
     private Rigidbody _rigidbody;
@@ -55,6 +60,8 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         _mainCamera = Camera.main;
         
+        _currentdelayTimer = dashDelay;
+        
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
         _healthSystem = GetComponent<HealthSystem>();
@@ -66,6 +73,7 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
+        _screenEffectController = ScreenEffectController.Instance;
         
         ResetJump();
         JumpCheck();
@@ -88,6 +96,14 @@ public class PlayerMovement : MonoBehaviour, IDead
         Debug.Log(Time.realtimeSinceStartup + " : " + a);
     }
 
+    private IEnumerator EndDash()
+    {
+        yield return null;
+        _dashing = false;
+        _screenEffectController.SetBool("BlurEffect", false);
+        _cinemachinePovExtension.CameraExpand(60);
+    }
+    
     #region InputSystem
 
         //Set Move Direction
@@ -122,15 +138,29 @@ public class PlayerMovement : MonoBehaviour, IDead
         {
             
         }
-
+        
         private void OnDash()
         {
-            Vector3 direction = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
-            _rigidbody.AddForce(direction * dashForce, ForceMode.Impulse);
+            if (new Vector3(moveDirection.normalized.x, 0, moveDirection.normalized.z).magnitude > 0.1f)
+            {
+                dashEndPoint = new Vector3((_rigidbody.position + orientation.forward * dashForce).x, _rigidbody.position.y, (_rigidbody.position + orientation.forward * dashForce).z) ;
+                if (_currentdelayTimer > dashDelay)
+                {
+                    _currentdelayTimer = 0;
+                    _dashing = true;
+                    Tweening.Instance.DOMove(_rigidbody,  dashEndPoint, 0.3f, EndDash(), EasingType.EaseOutSine);
+                    _screenEffectController.SetBool("BlurEffect", true);
+                    _cinemachinePovExtension.CameraExpand(58);
+                }
+            }
         }
 
     #endregion
-    
+
+    private void OnDrawGizmos()
+    {
+    }
+
     private void ResetJump()
     {
         readyTojump = true;
@@ -144,11 +174,13 @@ public class PlayerMovement : MonoBehaviour, IDead
 
     private void Move()
     {
+        if (_dashing == true) return;
         Vector3 vec = moveDirection.normalized * moveSpeed;
+
         _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
         if (vec.magnitude >= 0.1f)
         {
-            _cinemachinePovExtension.StartCameraShake(0.5f, 5);
+            _cinemachinePovExtension.StartCameraShake(2f, 0.06f);
         }
         else
         {
@@ -173,8 +205,9 @@ public class PlayerMovement : MonoBehaviour, IDead
     private void Update()
     {
         Rotate();
+        _currentdelayTimer += Time.deltaTime;
     }
-
+    
     private void FixedUpdate()
     {
         Move();

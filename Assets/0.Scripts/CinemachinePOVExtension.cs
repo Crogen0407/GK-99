@@ -54,6 +54,11 @@ public class CinemachinePOVExtension : CinemachineExtension
         }
     }
 
+    public void CameraExpand(float strength)
+    {
+        _cinemachineVirtualCamera.m_Lens.FieldOfView = strength;
+    }
+    
     public void CameraShake(float amplitude, float frequency, float duration)
     {
         StopCoroutine(CameraShakeCoroutine());

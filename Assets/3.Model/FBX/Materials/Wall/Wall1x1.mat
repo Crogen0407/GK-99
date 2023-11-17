@@ -129,7 +129,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EmissionMaskPower: 13.23
+    - _EmissionMaskPower: 5.63
     - _EmissionPower: 0.29
     - _EmissionTexturePower: 0.001
     - _EnvironmentReflections: 1
@@ -161,7 +161,7 @@ Material:
     - _EmissionColor: {r: 23.968626, g: 5.985872, b: 1.0552204, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tile: {r: 1, g: 1, b: 0, a: 0}
+    - _Tile: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5237802622949777839
 MonoBehaviour:
