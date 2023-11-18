@@ -16,31 +16,35 @@ public enum CurrentAnimation
 
 public class PlayerAnimator : MonoBehaviour
 {
-    
-    private PlayerMovement _playerMovement;
+    private PlayerAttack _playerAttack;
     private Animator _animator;
     
     void Awake()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerAttack = GetComponent<PlayerAttack>();
         _animator = transform.Find("Model").Find("Arm").GetComponent<Animator>();
-        _playerMovement.ChangeAnimationAction += ChangeAnimation;
-        _playerMovement.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
+        _playerAttack.ChangeAnimationAction += ChangeAnimation;
+        _playerAttack.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
     }
 
-    public void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
+    private void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
     {
-        Debug.Log(currentAnimation);
         _animator.SetBool(currentAnimation.ToString(), parameter);
     }
-    
-    public void ChangeAnimationGameOver()
+
+    public void DD(string name)
     {
-        _animator.SetTrigger("GameOver");
+        Debug.Log(name);
     }
     
-    void Update()
+    public void ChangeAnimation(string currentAnimation, bool parameter)
     {
-        
+        Debug.Log(parameter);
+        _animator.SetBool(currentAnimation, parameter);
+    }
+    
+    private void ChangeAnimationGameOver()
+    {
+        _animator.SetTrigger("GameOver");
     }
 }

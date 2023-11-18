@@ -49,17 +49,21 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
+    - _IsWave: 0
+    - _Power: 0.08
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 3.26
+    - _Scale: 10.63
+    - _Speed: 0.2
     - _SrcBlend: 1
     - _Surface: 0
+    - _Tiling: 3.66
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _EmssitionColor: {r: 9.370739, g: 0.8716718, b: 0, a: 1}
-    - _MainColor: {r: 0.4339623, g: 0, b: 0, a: 1}
+    - _EmssitionColor: {r: 1.1713424, g: 0.29046908, b: 0, a: 1}
+    - _MainColor: {r: 0.2735849, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6420781919935566396
 MonoBehaviour:

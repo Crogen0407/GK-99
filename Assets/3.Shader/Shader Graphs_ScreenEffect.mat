@@ -41,7 +41,7 @@ Material:
     - _BlurArea: 10.88
     - _BlurEffect: 0
     - _BlurStrength: 7.41
-    - _Breathing: 0
+    - _Breathing: 1
     - _IsNoising: 0
     - _NoisingEffect: 1
     - _OnlyWhiteAndBlack: 0

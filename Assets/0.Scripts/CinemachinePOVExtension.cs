@@ -58,6 +58,13 @@ public class CinemachinePOVExtension : CinemachineExtension
     {
         _cinemachineVirtualCamera.m_Lens.FieldOfView = strength;
     }
+
+    public void CameraForcedRotate(float xRotate = 0, float yRotate = 0)
+    {
+        
+        Debug.Log($"{xRotate}. {yRotate}");
+        transform.eulerAngles = new Vector3(xRotation, yRotation, 0);
+    }
     
     public void CameraShake(float amplitude, float frequency, float duration)
     {

@@ -10,8 +10,11 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public Volume Volume;
 
+    //Player
     public HealthSystem playerHealthSystem;
     public PlayerMovement playerMovement;
+    public PlayerAttack PlayerAttack;
+    
     public bool isUIMode;
     private bool gameOver;
 
@@ -30,7 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
                 else
                 {
                     //fail GameClear
-                    playerMovement.ChangeAnimationGameOverAction?.Invoke();
+                    PlayerAttack.ChangeAnimationGameOverAction?.Invoke();
                 }
                 
             }
@@ -40,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        PlayerAttack = playerMovement.GetComponent<PlayerAttack>();
         playerHealthSystem = playerMovement.transform.GetComponent<HealthSystem>();
     }
 

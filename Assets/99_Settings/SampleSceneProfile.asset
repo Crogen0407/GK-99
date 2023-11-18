@@ -140,10 +140,10 @@ MonoBehaviour:
     m_Value: 38
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 10.680627, g: 8.009771, b: 5.5082474, a: 1}
+    m_Value: {r: 14.259475, g: 7.1811514, b: 4.663475, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: -118
+    m_Value: -55
   saturation:
     m_OverrideState: 0
     m_Value: -11
@@ -201,5 +201,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   intensity:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
