@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,9 +12,24 @@ public class PlayerAttack : MonoBehaviour
         
     }
 
-    private void OnAttack()
+    private void OnAttack(InputValue value)
     {
-        ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
+        float dir = value.Get<float>();
+        if (dir != 0)
+        {
+            if (dir == -1)
+            {
+                ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, false);
+            }
+            else
+            {
+                ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
+            }
+        }
         ChangeAnimationAction?.Invoke(CurrentAnimation.Jap, true);
+    }
+    
+    private void OnSwitchAttackMode()
+    {
     }
 }

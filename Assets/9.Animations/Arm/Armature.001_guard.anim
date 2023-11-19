@@ -19732,8 +19732,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.041666668
-    functionName: DD
-    data: name
+    functionName: ChangeStateToFalseAnimation
+    data: Guard
     objectReferenceParameter: {fileID: 11500000, guid: 2c50d242d88da81478ba2c6d38a6e8d9,
       type: 3}
     floatParameter: 0

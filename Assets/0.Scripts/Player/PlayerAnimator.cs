@@ -21,8 +21,8 @@ public class PlayerAnimator : MonoBehaviour
     
     void Awake()
     {
-        _playerAttack = GetComponent<PlayerAttack>();
-        _animator = transform.Find("Model").Find("Arm").GetComponent<Animator>();
+        _playerAttack = GetComponentInParent<PlayerAttack>();
+        _animator = GetComponent<Animator>();
         _playerAttack.ChangeAnimationAction += ChangeAnimation;
         _playerAttack.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
     }
@@ -31,16 +31,15 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetBool(currentAnimation.ToString(), parameter);
     }
-
-    public void DD(string name)
+    
+    public void ChangeStateToTrueAnimation(string currentAnimation)
     {
-        Debug.Log(name);
+        _animator.SetBool(currentAnimation, true);
     }
     
-    public void ChangeAnimation(string currentAnimation, bool parameter)
+    public void ChangeStateToFalseAnimation(string currentAnimation)
     {
-        Debug.Log(parameter);
-        _animator.SetBool(currentAnimation, parameter);
+        _animator.SetBool(currentAnimation, false);
     }
     
     private void ChangeAnimationGameOver()

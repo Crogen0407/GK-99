@@ -24,27 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AttackStateChange",
+                    "name": "Attack",
                     "type": "Value",
-                    "id": "80cbf19b-2a67-4fbd-b692-b6a380cde5d5",
+                    "id": "ebf6ba97-ed5e-44a2-bb6a-f27c20bdc069",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "Dash",
                     "type": "Button",
-                    "id": "ebf6ba97-ed5e-44a2-bb6a-f27c20bdc069",
+                    "id": "42b953b1-326a-4d57-bc55-dccfeb6a8ba4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "SwitchAttackMode",
                     "type": "Button",
-                    "id": "42b953b1-326a-4d57-bc55-dccfeb6a8ba4",
+                    "id": "032266e3-8910-440a-b661-ead8ce7f1073",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,34 +120,78 @@
                 },
                 {
                     "name": "",
-                    "id": "3d09765e-6b4f-4e5a-8cfe-a1e928ab4287",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "AttackStateChange",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4618132e-3661-43b1-b9e2-4aeb19df488e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "46f2a69f-0bef-4a04-8949-900478e46e7c",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "ae5a708b-ee9f-43d5-9a47-17cf38f75162",
+                    "path": "1DAxis",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9016e9c7-0245-4452-95f9-871f1ee9ac0e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6cb715e3-9b32-415b-8327-60ac5950cd64",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c63099de-0bb1-475c-9cf2-e2591b0018a3",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchAttackMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c5b01d4-37b0-403e-b7ed-881cac2498dd",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchAttackMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d037e73-f7fe-4cbc-abc3-3fe84850c290",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchAttackMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

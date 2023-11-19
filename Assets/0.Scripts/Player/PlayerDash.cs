@@ -73,7 +73,6 @@ public class PlayerDash : MonoBehaviour
             {
                 if (dashEndPoint.magnitude > dashForce)
                 {
-                    Debug.Log(hit.point);
                     _currentdelayTimer = 0;
                     dashing = true;
                     Tweening.Instance.DOMove(_rigidbody,  hit.point, 0.3f, EndDash(), EasingType.EaseOutSine);
