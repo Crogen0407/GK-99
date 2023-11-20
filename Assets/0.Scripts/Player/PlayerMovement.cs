@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour, IDead
     private PlayerJump _playerJump;
     
     //Action
-    
     float clampingNumberX = 0;
     
     private void Awake()
@@ -84,7 +83,6 @@ public class PlayerMovement : MonoBehaviour, IDead
     private void Rotate()
     {
         moveDirection = new Vector3(orientation.forward.x,0,orientation.forward.z) * verticalInput + orientation.right * horizontalInput;
-        model.forward = orientation.forward;
     }
 
     private void Move()
@@ -110,11 +108,16 @@ public class PlayerMovement : MonoBehaviour, IDead
         }
     }
     
-    
+    private Vector3 velocity;
+
     private void FixedUpdate()
     {
         Rotate();        
         Move();
+        
+        Vector3 vec = model.forward;
+        model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 500);
     }
+
 }
 

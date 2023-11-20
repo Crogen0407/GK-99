@@ -61,4 +61,12 @@ public class GameManager : MonoSingleton<GameManager>
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PoolManager.Instance.Pop("Enemy", Vector3.zero, Quaternion.identity);
+        }
+    }
 }
