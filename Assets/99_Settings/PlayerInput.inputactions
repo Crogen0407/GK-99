@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "SwitchAttackMode",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "032266e3-8910-440a-b661-ead8ce7f1073",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -163,37 +163,48 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "c63099de-0bb1-475c-9cf2-e2591b0018a3",
-                    "path": "<Keyboard>/1",
+                    "name": "3D Vector",
+                    "id": "0254e6f0-f894-4f62-85da-22a8b1d46450",
+                    "path": "3DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SwitchAttackMode",
-                    "isComposite": false,
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "2c5b01d4-37b0-403e-b7ed-881cac2498dd",
+                    "name": "up",
+                    "id": "4e68613b-86d1-46af-825c-b35d4f0615b8",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SwitchAttackMode",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "5d037e73-f7fe-4cbc-abc3-3fe84850c290",
+                    "name": "right",
+                    "id": "8ef5dc77-a818-4ed1-9a06-cd3bb4399a9b",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchAttackMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "dc1e8cb1-1ffa-4d14-9042-fe22cb777dd8",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SwitchAttackMode",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },

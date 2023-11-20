@@ -48,9 +48,9 @@ public class PlayerDash : MonoBehaviour
     private void OnDash()
     {
         Vector3 moveDirection = new Vector3(
-            x : _playerMovement.moveDirection.normalized.x, 
+            x : _playerMovement.moveDirection.x, 
             y :  0,
-            z : _playerMovement.moveDirection.normalized.z
+            z : _playerMovement.moveDirection.z
             );
         
         Vector3 rayDirection = new Vector3(
@@ -71,11 +71,11 @@ public class PlayerDash : MonoBehaviour
             Debug.DrawRay(_rigidbody.position, rayDirection, Color.green, .1f);
             if (_currentdelayTimer > dashDelay)
             {
-                if (dashEndPoint.magnitude > dashForce)
+                if (rayDirection.magnitude > Vector3.Distance(hit.point, transform.position))
                 {
                     _currentdelayTimer = 0;
                     dashing = true;
-                    Tweening.Instance.DOMove(_rigidbody,  hit.point, 0.3f, EndDash(), EasingType.EaseOutSine);
+                    Tweening.Instance.DOMove(_rigidbody,  hit.point - rayDirection * 0.01f, 0.3f, EndDash(), EasingType.EaseOutSine);
                     _screenEffectController.SetBool("BlurEffect", true);
                     _cinemachinePovExtension.CameraExpand(58);
                     return;

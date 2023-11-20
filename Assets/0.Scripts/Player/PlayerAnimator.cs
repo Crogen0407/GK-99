@@ -6,12 +6,11 @@ using UnityEngine;
 
 public enum CurrentAnimation
 {
+    Attack,
     Direction,
-    Hook,
     Ready,
     Guard,
-    Uppercut,
-    Jap
+    Default
 }
 
 public class PlayerAnimator : MonoBehaviour
@@ -25,11 +24,18 @@ public class PlayerAnimator : MonoBehaviour
         _animator = GetComponent<Animator>();
         _playerAttack.ChangeAnimationAction += ChangeAnimation;
         _playerAttack.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
+        _playerAttack.AttackCountAction += ChangeAttackCount;
     }
 
     private void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
     {
-        _animator.SetBool(currentAnimation.ToString(), parameter);
+        int hashCode = Animator.StringToHash(currentAnimation.ToString());
+        if (_animator.IsInTransition(0) == false)
+        {
+            _animator.SetBool(CurrentAnimation.Default.ToString(), false);
+            _animator.SetBool(hashCode, parameter);
+        }
+        
     }
     
     public void ChangeStateToTrueAnimation(string currentAnimation)
@@ -40,6 +46,11 @@ public class PlayerAnimator : MonoBehaviour
     public void ChangeStateToFalseAnimation(string currentAnimation)
     {
         _animator.SetBool(currentAnimation, false);
+    }
+
+    public void ChangeAttackCount(float parameter)
+    {
+        _animator.SetFloat("AttackCount", parameter);
     }
     
     private void ChangeAnimationGameOver()
