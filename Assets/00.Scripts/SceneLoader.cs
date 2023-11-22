@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SceneLoader : MonoSingleton<SceneLoader>
 {
     private static string nextScene;
-    [SerializeField] private Image progressBar;
+    [SerializeField] private Transform progressBar;
     
     public static void LoadScene(string sceneName)
     {
@@ -34,13 +34,13 @@ public class SceneLoader : MonoSingleton<SceneLoader>
 
             if (op.progress < 0.9f)
             {
-                progressBar.fillAmount = op.progress;
+                progressBar.localScale = new Vector3(op.progress, 1,1);
             }
             else
             {
                 timer += Time.unscaledDeltaTime;
-                progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
-                if (progressBar.fillAmount >= 1f)
+                progressBar.localScale = new Vector3(Mathf.Lerp(0.9f, 1f, timer), 1,1);
+                if (progressBar.localScale.x >= 1f)
                 {
                     op.allowSceneActivation = true;
                     yield break;

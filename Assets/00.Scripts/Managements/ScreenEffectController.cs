@@ -6,6 +6,12 @@ using UnityEngine;
 public class ScreenEffectController : MonoSingleton<ScreenEffectController>
 {
     public Material material;
+    public bool BreathingOff;
+
+    public void Awake()
+    {
+        material.SetInt("_Breathing", Convert.ToInt32(BreathingOff));
+    }
 
     public void SetBool(string name, bool value)
     {
@@ -13,5 +19,5 @@ public class ScreenEffectController : MonoSingleton<ScreenEffectController>
         material.SetInt(name, Convert.ToInt32(value));
     }
 
-    
+
 }

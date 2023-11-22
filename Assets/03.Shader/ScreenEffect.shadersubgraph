@@ -1318,6 +1318,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "ad36637a5e5244c9b250768186a81154"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "84089bdabaf946fd8b708778d09e80f6"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "c3234d9caf3f41c994b7fc355328cbf7"
                 },
                 "m_SlotId": 1
