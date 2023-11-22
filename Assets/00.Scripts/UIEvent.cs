@@ -5,13 +5,17 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Cinemachine;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.ScreenCursorRaycasting;
 
 
 public class UIEvent : MonoBehaviour
 {
+    [SerializeField] private SceneAsset firstGameScene;
+    
     public SO_SoundVolumeData SoundVolumeData;
     private CinemachineVirtualCamera _vir01;
     private CinemachineVirtualCamera _vir02;
@@ -22,24 +26,20 @@ public class UIEvent : MonoBehaviour
         SoundVolumeData.Init();
         _vir01 = GameObject.Find("Virtual Camera_01").GetComponent<CinemachineVirtualCamera>();
         _vir02 = GameObject.Find("Virtual Camera_02").GetComponent<CinemachineVirtualCamera>();
+        
+        _vir01.MoveToTopOfPrioritySubqueue();
     }
 
-    void Update()
+    private void OnMouseClick()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _clickTarget = ScreenCursorRaycasting.CursorDirection();
-            SoundVolumeSettingsButtonClick(_clickTarget);
-            SoundVolumeSetting(_clickTarget);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            _vir01.MoveToTopOfPrioritySubqueue();
-        }
+        _clickTarget = ScreenCursorRaycasting.CursorDirection();
+        SoundVolumeSettingsButtonClick(_clickTarget);
+        SoundVolumeSetting(_clickTarget);
+        BackToTitleScene(_clickTarget);
+        GameQuit(_clickTarget);
+        GameStart(_clickTarget);
     }
 
-    
     /// <summary>
     /// Return SoundVolume Setting Value.  true : Volume Up | false : Volume Down
     /// </summary>
@@ -70,9 +70,6 @@ public class UIEvent : MonoBehaviour
                     SoundVolumeData.BGMSoundVolume += volumeCount; 
                     break;
             }
-            Debug.Log(SoundVolumeData.MSSoundVolume);
-            Debug.Log(SoundVolumeData.SFSoundVolume);
-            Debug.Log(SoundVolumeData.BGMSoundVolume);
         }
     }
     
@@ -81,6 +78,30 @@ public class UIEvent : MonoBehaviour
         if (hit.transform != null && hit.transform.name == "SettingsButton")
         {
             _vir02.MoveToTopOfPrioritySubqueue();
+        }
+    }
+
+    private void BackToTitleScene(RaycastHit hit)
+    {
+        if (hit.transform != null && hit.transform.name == "BackToTitleScene")
+        {
+            _vir01.MoveToTopOfPrioritySubqueue();
+        }
+    }
+
+    private void GameStart(RaycastHit hit)
+    {
+        if (hit.transform != null && hit.transform.name == "Start")
+        {
+            SceneManager.LoadScene(firstGameScene.name);
+        }
+    }
+    
+    private void GameQuit(RaycastHit hit)
+    {
+        if (hit.transform != null && hit.transform.name == "Quit")
+        {
+            Application.Quit();
         }
     }
 }
