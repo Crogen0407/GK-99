@@ -62308,7 +62308,7 @@ MonoBehaviour:
   m_text: "<SIZE=40>CONDITION : GOOD, BAD DANGEROUS </SIZE>\n \nCURRENT ATTACK MODE
     : JAP\n\nMACHINE VER : V93.2\nPROCESS LOADER VER : V23.6\n\nUSER CODE : \nSOFTWARE
     VER : V12.9\n\nTIME\n[00:00:00.00]\nPOSITION \n[0,0,0]\nROTATION \n[0,0,0]\nVELCOPCITY\n[0,0,0]\nDASH
-    : \nJUMP : \nSIGNAL : \nOPERATOR BY BODY :"
+    : \nJUMP : \nSIGNAL : "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc878bd94bde59d4a9a4c1878dd7b118, type: 2}
   m_sharedMaterial: {fileID: -8281946922049448092, guid: dc878bd94bde59d4a9a4c1878dd7b118,
@@ -86272,22 +86272,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   condition: 0
   current_attack_mode: 0
-  machine_ver: 
-  process_loader_ver: 
+  machine_ver: V93.2
+  process_loader_ver: V23.6
   user_code: 
-  software_ver: 
+  software_ver: V12.9
   time: 0
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   dash: 0
   jump: 0
   signal: 0
-  operator_by_body: {x: 0, y: 0, z: 0}
   _sampleOutputText: "<SIZE=40>CONDITION : GOOD, BAD DANGEROUS </SIZE>\n \nCURRENT
     ATTACK MODE : JAP\n\nMACHINE VER : V93.2\nPROCESS LOADER VER : V23.6\n\nUSER
     CODE : \nSOFTWARE VER : V12.9\n\nTIME\n[00:00:00.00]\nPOSITION \n[0,0,0]\nROTATION
-    \n[0,0,0]\nVELCOCITY\n[0,0,0]\nDASH : \nJUMP : \nSIGNAL : \nOPERATOR BY BODY
-    :\n\n\n\n\n"
+    \n[0,0,0]\nVELCOCITY\n[0,0,0]\nDASH : \nJUMP : \nSIGNAL : \n\n\n"
 --- !u!4 &1845796497
 Transform:
   m_ObjectHideFlags: 0

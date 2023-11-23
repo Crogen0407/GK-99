@@ -14,9 +14,9 @@ public enum Condition
 
 public enum Attack
 {
-    Jap,
-    Hook,
-    Uppercut
+    JAP,
+    HOOK,
+    UPPERCUT
 }
 
 public class ConsoleTextController : MonoSingleton<ConsoleTextController>
@@ -29,22 +29,156 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
     [SerializeField] private string software_ver;
     [SerializeField] private float time;
     [SerializeField] private Vector3 position;
+    [SerializeField] private Vector3 rotation;
     [SerializeField] private Vector3 velocity;
     [SerializeField] private bool dash;
     [SerializeField] private bool jump;
     [SerializeField] private float signal;
-    [SerializeField] private Vector3 operator_by_body;
+
+    public Condition CONDITION
+    {
+        get => condition;
+        set
+        {
+            condition = value;
+            Write();
+        }
+    }
+    public Attack CURRENT_ATTACK_MODE
+    {
+        get => current_attack_mode;
+        set
+        {
+            current_attack_mode = value;
+            Write();
+        }
+    }
+    public string MACHINE_VER
+    {
+        get => machine_ver;
+        set
+        {
+            machine_ver = value;
+            Write();
+        }
+    }
+    public string PROCESS_LOADER_VER
+    {
+        get => process_loader_ver;
+        set
+        {
+            process_loader_ver = value;
+            Write();
+        }
+    }
+    public string USER_CODE
+    {
+        get => user_code;
+        set
+        {
+            user_code = value;
+            Write();
+        }
+    }
+    public string SOFTWARE_VER
+    {
+        get => software_ver;
+        set
+        {
+            software_ver = value;
+            Write();
+        }
+    }
+    public float TIME
+    {
+        get => time;
+        set
+        {
+            time = value;
+            Write();
+        }
+    }
+    public Vector3 POSITION
+    {
+        get => position;
+        set
+        {
+            position = value;
+            Write();
+        }
+    }
+    public Vector3 ROTATION
+    {
+        get => rotation;
+        set
+        {
+            rotation = value;
+            Write();
+        }
+    }
+    public Vector3 VELOCITY
+    {
+        get => velocity;
+        set
+        {
+            velocity = value;
+            Write();
+        }
+    }
+    public bool DASH
+    {
+        get => dash;
+        set
+        {
+            dash = value;
+            Write();
+        }
+    }
+    public bool JUMP
+    {
+        get => jump;
+        set
+        {
+            jump = value;
+            Write();
+        }
+    }
+    public float SIGNAL
+    {
+        get => signal;
+        set
+        {
+            signal = value;
+            Write();
+        }
+    }
+    
     
     private TextMeshProUGUI _consoleText;
     private ProfilerRecorder _profilerRecorder;
     [SerializeField] [TextArea(minLines: 3, maxLines : 25)] private string _sampleOutputText;
     
-    public void Write(Condition condition)
+    private void Write()
     {
-        this.condition = condition;
-        
-        
         _consoleText.text =
-            $"<SIZE=40>CONDITION : {condition.ToString()} </SIZE>\n \nCURRENT ATTACK MODE : JAP\n\nMACHINE VER : V93.2\nPROCESS LOADER VER : V23.6\n\nUSER CODE : \nSOFTWARE VER : V12.9\n\n00:00:00.00\nPOSITION \n[0,0,0]\nROTATION \n[0,0,0]\nVELOCITY\n[0,0,0]\nDASH : \nJUMP : \nSIGNAL : \nOPERATOR BY BODY :\n\n\n\n\n";
+            $"<SIZE=40>CONDITION : {condition} </SIZE>" +
+            "\n" +
+            $" \nCURRENT ATTACK MODE : {current_attack_mode}" +
+            "\n" +
+            $"\nMACHINE VER : {machine_ver}\nPROCESS LOADER VER : {process_loader_ver}" +
+            "\n" +
+            $"\nUSER CODE : {user_code}" +
+            $"\nSOFTWARE VER : {software_ver}" +
+            "\nTIME" +
+            $"\n[{time}]" +
+            "\nPOSITION " +
+            $"\n[{position}]" +
+            "\nROTATION " +
+            $"\n[{rotation}]" +
+            "\nVELOCITY" +
+            $"\n[{velocity}]" +
+            $"\nDASH : {dash}" +
+            $"\nJUMP : {jump}" +
+            $"\nSIGNAL : {signal}";
     }
 }

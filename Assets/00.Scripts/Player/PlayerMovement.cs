@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour, IDead
         
         Vector3 vec = model.forward;
         model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 500);
+        ConsoleTextController.Instance.POSITION = transform.position;
     }
 
 }
