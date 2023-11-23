@@ -52,6 +52,9 @@ public class GameManager : MonoSingleton<GameManager>
         // Volume Settings
         //Bloom bloom = new Bloom();
         //Volume.profile.TryGet<Bloom>(out bloom);
+        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

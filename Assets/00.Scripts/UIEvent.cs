@@ -1,14 +1,6 @@
-using System;
-using System.Reflection;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Cinemachine;
-using TMPro;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.ScreenCursorRaycasting;
 
 
@@ -38,6 +30,7 @@ public class UIEvent : MonoBehaviour
         BackToTitleScene(_clickTarget);
         GameQuit(_clickTarget);
         GameStart(_clickTarget);
+        
     }
 
     /// <summary>
@@ -93,7 +86,7 @@ public class UIEvent : MonoBehaviour
     {
         if (hit.transform != null && hit.transform.name == "Start")
         {
-            SceneManager.LoadScene(firstGameScene.name);
+            SceneLoader.LoadScene(firstGameScene.name);
         }
     }
     

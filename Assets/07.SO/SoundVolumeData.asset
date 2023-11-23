@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31d91f02ae4c8d4f98fc0d9afe456b8, type: 3}
   m_Name: SoundVolumeData
   m_EditorClassIdentifier: 
+  _msSoundVolume: 10
+  _sfSoundVolume: 5
+  _bgmSoundVolume: 5
