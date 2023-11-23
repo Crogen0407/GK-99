@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerJump : MonoBehaviour
+public class PlayerJump : MonoBehaviour, IConsoleText
 {
     private bool jumpSpeedUp;
     private float groundDrag = 4;
@@ -19,6 +19,9 @@ public class PlayerJump : MonoBehaviour
     //Managements
     private GameManager _gameManager;
     private CinemachinePOVExtension _cinemachinePovExtension;
+
+    //Controllers
+    private ConsoleTextController _consoleTextController;
     
     //Components
     private Rigidbody _rigidbody;
@@ -36,6 +39,7 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.Instance;
+        _consoleTextController = ConsoleTextController.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         OnJump();
     }
@@ -76,5 +80,11 @@ public class PlayerJump : MonoBehaviour
     private void FixedUpdate()
     {
         JumpCheck();
+        consoleTextUpdate();
+    }
+
+    public void consoleTextUpdate()
+    {
+        _consoleTextController.JUMP = Jumping;
     }
 }

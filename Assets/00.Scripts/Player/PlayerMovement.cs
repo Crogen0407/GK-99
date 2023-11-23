@@ -4,7 +4,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IDead
+public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
 {
     [Header("Movement")]
     public float moveSpeed=10;
@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour, IDead
     //Managements
     private GameManager _gameManager;
     private CinemachinePOVExtension _cinemachinePovExtension;
+    
+    //Controller
+    private ConsoleTextController _consoleTextController;
     private ScreenEffectController _screenEffectController;
     
     //Components
@@ -53,7 +56,9 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
+        
         _screenEffectController = ScreenEffectController.Instance;
+        _consoleTextController = ConsoleTextController.Instance;
     }
 
     public void Dead()
@@ -114,11 +119,16 @@ public class PlayerMovement : MonoBehaviour, IDead
     {
         Rotate();        
         Move();
-        
+        consoleTextUpdate();
         Vector3 vec = model.forward;
         model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 500);
-        ConsoleTextController.Instance.POSITION = transform.position;
+        
     }
 
+    public void consoleTextUpdate()
+    {
+        _consoleTextController.POSITION = transform.position;
+        _consoleTextController.ROTATION = transform.eulerAngles;
+    }
 }
 

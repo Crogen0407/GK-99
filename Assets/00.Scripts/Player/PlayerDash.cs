@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Tweening;
 
-public class PlayerDash : MonoBehaviour
+public class PlayerDash : MonoBehaviour, IConsoleText
 {
     public float dashForce = 20;
     public bool dashing;
@@ -16,6 +16,9 @@ public class PlayerDash : MonoBehaviour
     private GameManager _gameManager;
     private CinemachinePOVExtension _cinemachinePovExtension;
     private ScreenEffectController _screenEffectController;
+    
+    //Controllers
+    private ConsoleTextController _consoleTextController;
     
     //Components
     private Rigidbody _rigidbody;
@@ -33,6 +36,8 @@ public class PlayerDash : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
+        
+        _consoleTextController = ConsoleTextController.Instance;
         _screenEffectController = ScreenEffectController.Instance;
 
     }
@@ -93,5 +98,15 @@ public class PlayerDash : MonoBehaviour
     private void Update()
     {
         _currentdelayTimer += Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+        consoleTextUpdate();
+    }
+
+    public void consoleTextUpdate()
+    {
+        _consoleTextController.DASH = dashing;
     }
 }

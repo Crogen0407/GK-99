@@ -1,9 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using Unity.Profiling;
 using UnityEngine;
+
+public interface IConsoleText
+{
+    public void consoleTextUpdate();
+}
 
 public enum Condition
 {
@@ -153,15 +154,21 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
         }
     }
     
-    
-    private TextMeshProUGUI _consoleText;
     private ProfilerRecorder _profilerRecorder;
     [SerializeField] [TextArea(minLines: 3, maxLines : 25)] private string _sampleOutputText;
+
+    //Managements
+    private UIManager _uiManager;
     
+    private void Start()
+    {
+        _uiManager = UIManager.Instance;
+    }
+
     private void Write()
     {
-        _consoleText.text =
-            $"<SIZE=40>CONDITION : {condition} </SIZE>" +
+        _uiManager.WriteConsoleText
+            ($"<SIZE=40>CONDITION : {condition} </SIZE>" +
             "\n" +
             $" \nCURRENT ATTACK MODE : {current_attack_mode}" +
             "\n" +
@@ -179,6 +186,7 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
             $"\n[{velocity}]" +
             $"\nDASH : {dash}" +
             $"\nJUMP : {jump}" +
-            $"\nSIGNAL : {signal}";
+            $"\nSIGNAL : {signal}");
     }
 }
+
