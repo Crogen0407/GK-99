@@ -39,25 +39,30 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
 
     private void OnAttack(InputValue value)
     {
-        if (PlayerAnimator.Instance._animator.GetBool("Attack") == false && attackDelayTime > 1.1f)
+        Debug.Log("키눌림");
+        if (attackDelayTime > (PlayerAnimator.Instance._animator.GetCurrentAnimatorStateInfo(0).length + 0.1f))
         {
-            ChangeAnimationAction?.Invoke("Default", false);
-            attackDelayTime = 0;
-            float dir = value.Get<float>();
-            if (dir != 0)
+            if (PlayerAnimator.Instance._animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 &&
+                PlayerAnimator.Instance._animator.GetBool("Attack") == false)
+            
             {
-                if (dir == -1)
+                ChangeAnimationAction?.Invoke("Default", false);
+                attackDelayTime = 0;
+                float dir = value.Get<float>();
+                if (dir != 0)
                 {
-                    ChangeAnimationAction?.Invoke("Direction", false);
+                    if (dir == -1)
+                    {
+                        ChangeAnimationAction?.Invoke("Direction", false);
+                    }
+                    else
+                    {
+                        ChangeAnimationAction?.Invoke("Direction", true);
+                    }
                 }
-                else
-                {
-                    ChangeAnimationAction?.Invoke("Direction", true);
-                }
+                ChangeAnimationAction?.Invoke("Attack", true);
+                isAttacking = true;
             }
-            ChangeAnimationAction?.Invoke("Attack", true);
-            Debug.Log("키눌림");
-            isAttacking = true;
         }
     }
     

@@ -60,7 +60,8 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         //Bloom bloom = new Bloom();
         //Volume.profile.TryGet<Bloom>(out bloom);
         _consoleTextController = ConsoleTextController.Instance;
-        
+
+        Application.targetFrameRate = 60;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

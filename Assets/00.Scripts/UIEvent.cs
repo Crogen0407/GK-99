@@ -6,8 +6,6 @@ using UnityEngine.ScreenCursorRaycasting;
 
 public class UIEvent : MonoBehaviour
 {
-    [SerializeField] private SceneAsset firstGameScene;
-    
     public SO_SoundVolumeData SoundVolumeData;
     private CinemachineVirtualCamera _vir01;
     private CinemachineVirtualCamera _vir02;
@@ -86,7 +84,7 @@ public class UIEvent : MonoBehaviour
     {
         if (hit.transform != null && hit.transform.name == "Start")
         {
-            SceneLoader.LoadScene(firstGameScene.name);
+            SceneLoader.LoadScene("GameScene_0");
         }
     }
     
