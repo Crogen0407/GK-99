@@ -134,7 +134,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Emission: {r: 59.16981, g: 2.1685271, b: 0, a: 1}
+    - _Emission: {r: 78.99633, g: 0.7826709, b: 0, a: 1}
     - _EmissionColor: {r: 0.34943002, g: 0.01414083, b: 0, a: 1}
     - _FireColor: {r: 1, g: 0.03524351, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
