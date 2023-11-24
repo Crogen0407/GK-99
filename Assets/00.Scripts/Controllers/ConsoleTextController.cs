@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IConsoleText
 {
-    public void consoleTextUpdate();
+    public void ConsoleTextUpdate();
 }
 
 public enum Condition

@@ -80,10 +80,10 @@ public class PlayerJump : MonoBehaviour, IConsoleText
     private void FixedUpdate()
     {
         JumpCheck();
-        consoleTextUpdate();
+        ConsoleTextUpdate();
     }
 
-    public void consoleTextUpdate()
+    public void ConsoleTextUpdate()
     {
         _consoleTextController.JUMP = Jumping;
     }

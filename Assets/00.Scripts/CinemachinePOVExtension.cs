@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Cinemachine;
-public class CinemachinePOVExtension : CinemachineExtension
+public class CinemachinePOVExtension : CinemachineExtension, IConsoleText
 {
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
@@ -17,6 +18,8 @@ public class CinemachinePOVExtension : CinemachineExtension
     
     [SerializeField] private float _minRotateX = -45;
     [SerializeField] private float _maxRotateX = 60;
+
+    private ConsoleTextController _consoleTextController;
     
     protected void Awake()
     {
@@ -34,7 +37,12 @@ public class CinemachinePOVExtension : CinemachineExtension
         _cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _cinemachineBasicMultiChannelPerlin.enabled = false;
     }
-    
+
+    private void Start()
+    {
+        _consoleTextController = ConsoleTextController.Instance;
+    }
+
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
         if (vcam.Follow)
@@ -99,4 +107,13 @@ public class CinemachinePOVExtension : CinemachineExtension
         _cinemachineBasicMultiChannelPerlin.enabled = false;
     }
 
+    private void FixedUpdate()
+    {
+        ConsoleTextUpdate();
+    }
+
+    public void ConsoleTextUpdate()
+    {
+        _consoleTextController.ROTATION = transform.eulerAngles;
+    }
 }

@@ -75,15 +75,12 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         {
             PoolManager.Instance.Pop("Enemy", Vector3.zero, Quaternion.identity);
         }
+        ConsoleTextUpdate();
     }
 
-    private void FixedUpdate()
-    {
-        consoleTextUpdate();
-    }
 
-    public void consoleTextUpdate()
+    public void ConsoleTextUpdate()
     {
-        _consoleTextController.SIGNAL = 1.0f / Time.deltaTime;
+        _consoleTextController.SIGNAL = Mathf.Floor(1.0f / Time.deltaTime * 10) / 10;
     }
 }

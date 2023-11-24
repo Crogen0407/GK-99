@@ -119,16 +119,15 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
     {
         Rotate();        
         Move();
-        consoleTextUpdate();
+        ConsoleTextUpdate();
         Vector3 vec = model.forward;
         model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 500);
         
     }
 
-    public void consoleTextUpdate()
+    public void ConsoleTextUpdate()
     {
         _consoleTextController.POSITION = transform.position;
-        _consoleTextController.ROTATION = transform.eulerAngles;
     }
 }
 

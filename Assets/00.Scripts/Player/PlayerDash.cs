@@ -102,10 +102,10 @@ public class PlayerDash : MonoBehaviour, IConsoleText
 
     private void FixedUpdate()
     {
-        consoleTextUpdate();
+        ConsoleTextUpdate();
     }
 
-    public void consoleTextUpdate()
+    public void ConsoleTextUpdate()
     {
         _consoleTextController.DASH = dashing;
     }
