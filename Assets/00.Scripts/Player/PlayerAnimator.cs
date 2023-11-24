@@ -4,15 +4,6 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public enum CurrentAnimation
-{
-    Attack,
-    Direction,
-    Ready,
-    Guard,
-    Default
-}
-
 public class PlayerAnimator : MonoBehaviour
 {
     private PlayerAttack _playerAttack;
@@ -27,15 +18,10 @@ public class PlayerAnimator : MonoBehaviour
         _playerAttack.AttackCountAction += ChangeAttackCount;
     }
 
-    private void ChangeAnimation(CurrentAnimation currentAnimation, bool parameter)
+    private void ChangeAnimation(string currentAnimation, bool parameter)
     {
-        int hashCode = Animator.StringToHash(currentAnimation.ToString());
-        if (_animator.IsInTransition(0) == false)
-        {
-            _animator.SetBool(CurrentAnimation.Default.ToString(), false);
-            _animator.SetBool(hashCode, parameter);
-        }
-        
+        int hashCode = Animator.StringToHash(currentAnimation);
+        _animator.SetBool(hashCode, parameter);
     }
     
     public void ChangeStateToTrueAnimation(string currentAnimation)

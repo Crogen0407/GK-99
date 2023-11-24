@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour, IConsoleText
 {
-    public Action<CurrentAnimation, bool> ChangeAnimationAction;
+    public Action<string, bool> ChangeAnimationAction;
     public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
 
@@ -40,14 +40,14 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
             {
                 if (dir == -1)
                 {
-                    ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, false);
+                    ChangeAnimationAction?.Invoke("Direction", false);
                 }
                 else
                 {
-                    ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
+                    ChangeAnimationAction?.Invoke("Direction", true);
                 }
             }
-            ChangeAnimationAction?.Invoke(CurrentAnimation.Attack, true);
+            ChangeAnimationAction?.Invoke("Attack", true);
             Debug.Log("키눌림");
             isAttacking = true;
         }
