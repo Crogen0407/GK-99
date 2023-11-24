@@ -16,6 +16,9 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
     public PlayerMovement playerMovement;
     public PlayerAttack PlayerAttack;
     
+    //Managements
+
+    
     //Controllers
     public ConsoleTextController _consoleTextController;
     

@@ -15,8 +15,6 @@ public class PoolManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
-        
         
         MakeObj();
     }

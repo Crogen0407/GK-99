@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : MonoSingleton<PlayerAnimator>
 {
     private PlayerAttack _playerAttack;
-    private Animator _animator;
+    public Animator _animator;
     
     void Awake()
     {

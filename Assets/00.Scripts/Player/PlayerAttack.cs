@@ -8,6 +8,12 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
 
+    [SerializeField] private Transform _attackEffectPointRight;
+    [SerializeField] private Transform _attackEffectPointLeft;
+
+    
+    private float attackDelayTime = 0;
+    
     private bool _isAttacking;
     public bool isAttacking
     {
@@ -33,8 +39,10 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
 
     private void OnAttack(InputValue value)
     {
-        if (!isAttacking)
+        if (PlayerAnimator.Instance._animator.GetBool("Attack") == false && attackDelayTime > 1.1f)
         {
+            ChangeAnimationAction?.Invoke("Default", false);
+            attackDelayTime = 0;
             float dir = value.Get<float>();
             if (dir != 0)
             {
@@ -84,5 +92,10 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public void ConsoleTextUpdate()
     {
         _consoleTextController.CURRENT_ATTACK_MODE = _currentAttackMode;
+    }
+
+    private void Update()
+    {
+        attackDelayTime += Time.deltaTime;
     }
 }
