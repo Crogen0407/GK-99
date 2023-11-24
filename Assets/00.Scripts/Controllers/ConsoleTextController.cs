@@ -162,6 +162,7 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
     
     private void Start()
     {
+        Time.timeScale = 1;
         _uiManager = UIManager.Instance;
     }
 
@@ -177,16 +178,29 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
             $"\nUSER CODE : {user_code}" +
             $"\nSOFTWARE VER : {software_ver}" +
             "\nTIME" +
-            $"\n[{time}]" +
+            $"\n[{((int)time/360).ToString("00")}:{((int)time/60).ToString("00")}:{((int)time%60 + time - (int)time).ToString("00.00")}]" +
             "\nPOSITION " +
-            $"\n[{position}]" +
+            $"\n[{DeleteCharacter(position, new string[]{"(", ")"})}]" +
             "\nROTATION " +
-            $"\n[{rotation}]" +
+            $"\n[{DeleteCharacter(rotation, new string[]{"(", ")"})}]" +
             "\nVELOCITY" +
-            $"\n[{velocity}]" +
+            $"\n[{DeleteCharacter(velocity, new string[]{"(", ")"})}]" +
             $"\nDASH : {dash}" +
             $"\nJUMP : {jump}" +
             $"\nSIGNAL : {signal}");
     }
+
+    private string DeleteCharacter<T>(T text, string[] deleteChar)
+    {
+        string currentText = text.ToString();        
+        string newText = "";
+        for (int i = 0; i < deleteChar.Length; i++)
+        {
+            newText = currentText.Replace(deleteChar[i], "");
+            currentText = newText;
+        }
+        return newText;
+    }
+
 }
 

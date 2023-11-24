@@ -128,6 +128,8 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
     public void ConsoleTextUpdate()
     {
         _consoleTextController.POSITION = transform.position;
+        _consoleTextController.VELOCITY = _rigidbody.velocity;
+        _consoleTextController.ROTATION = orientation.eulerAngles;
     }
 }
 

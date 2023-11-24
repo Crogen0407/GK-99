@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoSingleton<GameManager>, IConsoleText
 {
     public Volume Volume;
-
+    public float timer;
+    
     //Player
     public HealthSystem playerHealthSystem;
     public PlayerMovement playerMovement;
@@ -76,11 +77,13 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
             PoolManager.Instance.Pop("Enemy", Vector3.zero, Quaternion.identity);
         }
         ConsoleTextUpdate();
+        timer = Time.time;
     }
 
 
     public void ConsoleTextUpdate()
     {
         _consoleTextController.SIGNAL = Mathf.Floor(1.0f / Time.deltaTime * 10) / 10;
+        _consoleTextController.TIME = Mathf.Floor(timer * 100) / 100;
     }
 }

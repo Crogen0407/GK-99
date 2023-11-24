@@ -7,7 +7,27 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public Action<CurrentAnimation, bool> ChangeAnimationAction;
     public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
-    public bool isAttacking;
+
+    private bool _isAttacking;
+    public bool isAttacking
+    {
+        get
+        {
+            return _isAttacking;
+        }
+        set
+        {
+            if (value == false)
+            {
+                Debug.Log("isattack을 false로 설정");
+            }
+            else
+            {
+                Debug.Log("isattack을 true로 설정");
+            }
+            _isAttacking = value;
+        }
+    }
 
     private Attack _currentAttackMode;
     
@@ -25,19 +45,24 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
 
     private void OnAttack(InputValue value)
     {
-        float dir = value.Get<float>();
-        if (dir != 0)
+        if (!isAttacking)
         {
-            if (dir == -1)
+            float dir = value.Get<float>();
+            if (dir != 0)
             {
-                ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, false);
+                if (dir == -1)
+                {
+                    ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, false);
+                }
+                else
+                {
+                    ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
+                }
             }
-            else
-            {
-                ChangeAnimationAction?.Invoke(CurrentAnimation.Direction, true);
-            }
+            ChangeAnimationAction?.Invoke(CurrentAnimation.Attack, true);
+            Debug.Log("키눌림");
+            isAttacking = true;
         }
-        ChangeAnimationAction?.Invoke(CurrentAnimation.Attack, true);
     }
     
     private void OnSwitchAttackMode(InputValue value)

@@ -73,7 +73,6 @@ public class PlayerDash : MonoBehaviour, IConsoleText
                 );
             RaycastHit hit;
             Physics.Raycast(_rigidbody.position, rayDirection, out hit);
-            Debug.DrawRay(_rigidbody.position, rayDirection, Color.green, .1f);
             if (_currentdelayTimer > dashDelay)
             {
                 if (rayDirection.magnitude > Vector3.Distance(hit.point, transform.position))

@@ -41,11 +41,20 @@ public class PlayerAnimator : MonoBehaviour
     public void ChangeStateToTrueAnimation(string currentAnimation)
     {
         _animator.SetBool(currentAnimation, true);
+        if (currentAnimation.Equals("Attack"))
+        {
+            _playerAttack.isAttacking = true;
+        }
     }
     
     public void ChangeStateToFalseAnimation(string currentAnimation)
     {
         _animator.SetBool(currentAnimation, false);
+
+        if (currentAnimation.Equals("Attack"))
+        {
+            _playerAttack.isAttacking = false;
+        }
     }
 
     public void ChangeAttackCount(float parameter)
@@ -57,4 +66,9 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetTrigger("GameOver");
     }
+
+    // private void FixedUpdate()
+    // {
+    //     _playerAttack.isAttacking = _animator.GetBool("Attack");
+    // }
 }

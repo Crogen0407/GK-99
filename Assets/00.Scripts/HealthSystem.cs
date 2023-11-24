@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    private Condition j;
+    
     public Action Dead;
     [SerializeField] private  int hp = 100;
 
@@ -20,6 +22,8 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
+    
+    
 }
 
 public interface IDead
