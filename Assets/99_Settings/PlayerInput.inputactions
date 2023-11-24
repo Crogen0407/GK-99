@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player",
             "id": "0d0927ea-f155-4768-993d-87f41172685c",
             "actions": [
                 {
@@ -29,7 +29,7 @@
                     "id": "ebf6ba97-ed5e-44a2-bb6a-f27c20bdc069",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 },
                 {
@@ -145,7 +145,7 @@
                     "id": "9016e9c7-0245-4452-95f9-871f1ee9ac0e",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale(factor=-1)",
                     "groups": "",
                     "action": "Attack",
                     "isComposite": false,
@@ -156,7 +156,7 @@
                     "id": "6cb715e3-9b32-415b-8327-60ac5950cd64",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale",
                     "groups": "",
                     "action": "Attack",
                     "isComposite": false,

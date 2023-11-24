@@ -180,26 +180,27 @@ public class ConsoleTextController : MonoSingleton<ConsoleTextController>
             "\nTIME" +
             $"\n[{((int)time/360).ToString("00")}:{((int)time/60).ToString("00")}:{((int)time%60 + time - (int)time).ToString("00.00")}]" +
             "\nPOSITION " +
-            $"\n[{DeleteCharacter(position, new string[]{"(", ")"})}]" +
+            $"\n[{ConvertVector3ToString(position)}]" +
             "\nROTATION " +
-            $"\n[{DeleteCharacter(rotation, new string[]{"(", ")"})}]" +
+            $"\n[{ConvertVector3ToString(RotateOptimization(rotation))}]" +
             "\nVELOCITY" +
-            $"\n[{DeleteCharacter(velocity, new string[]{"(", ")"})}]" +
+            $"\n[{ConvertVector3ToString(velocity)}]" +
             $"\nDASH : {dash}" +
             $"\nJUMP : {jump}" +
             $"\nSIGNAL : {signal}");
     }
 
-    private string DeleteCharacter<T>(T text, string[] deleteChar)
+    private Vector3 RotateOptimization(Vector3 rotate)
     {
-        string currentText = text.ToString();        
-        string newText = "";
-        for (int i = 0; i < deleteChar.Length; i++)
-        {
-            newText = currentText.Replace(deleteChar[i], "");
-            currentText = newText;
-        }
-        return newText;
+        return new Vector3(rotate.x % 360, rotate.y % 360, rotate.z % 360);
+    }
+    
+    private string ConvertVector3ToString(Vector3 vec)
+    {
+        vec.x = Mathf.Floor(vec.x * 10) / 10;
+        vec.y = Mathf.Floor(vec.y * 10) / 10;
+        vec.z = Mathf.Floor(vec.z * 10) / 10;
+        return $"{vec.x},{vec.y},{vec.z}";
     }
 
 }

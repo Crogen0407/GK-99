@@ -50,7 +50,6 @@ public class PlayerAnimator : MonoBehaviour
     public void ChangeStateToFalseAnimation(string currentAnimation)
     {
         _animator.SetBool(currentAnimation, false);
-
         if (currentAnimation.Equals("Attack"))
         {
             _playerAttack.isAttacking = false;

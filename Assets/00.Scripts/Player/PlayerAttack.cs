@@ -17,14 +17,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
         }
         set
         {
-            if (value == false)
-            {
-                Debug.Log("isattack을 false로 설정");
-            }
-            else
-            {
-                Debug.Log("isattack을 true로 설정");
-            }
+            Debug.Log($"isattack을 {value} 설정");
             _isAttacking = value;
         }
     }
@@ -33,11 +26,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     
     private ConsoleTextController _consoleTextController;
     
-    private void Awake()
-    {
-        isAttacking = false;
-    }
-
     private void Start()
     {
         _consoleTextController = ConsoleTextController.Instance;
