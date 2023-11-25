@@ -38,8 +38,8 @@ public class PlayerDash : MonoBehaviour, IConsoleText
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         
-        _consoleTextController = ConsoleTextController.Instance;
-        _screenEffectController = ScreenEffectController.Instance;
+        _consoleTextController = _gameManager.consoleTextController;
+        _screenEffectController = _gameManager.screenEffectController;
 
     }
 

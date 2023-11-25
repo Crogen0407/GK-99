@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenEffectController : MonoSingleton<ScreenEffectController>
+public class ScreenEffectController : MonoBehaviour
 {
     public Material material;
     public bool BreathingOff;

@@ -19,7 +19,9 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
     //Managements
     
     //Controllers
-    public ConsoleTextController _consoleTextController;
+    public ConsoleTextController consoleTextController;
+    public EffectController effectController;
+    public ScreenEffectController screenEffectController;
     
     public bool isUIMode;
     private bool gameOver;
@@ -51,6 +53,10 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         PlayerAttack = playerMovement.GetComponent<PlayerAttack>();
         playerHealthSystem = playerMovement.transform.GetComponent<HealthSystem>();
+        
+        consoleTextController = FindObjectOfType<ConsoleTextController>();
+        effectController = FindObjectOfType<EffectController>();
+        screenEffectController = FindObjectOfType<ScreenEffectController>();
     }
 
     private void Start()
@@ -58,8 +64,7 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         // Volume Settings
         //Bloom bloom = new Bloom();
         //Volume.profile.TryGet<Bloom>(out bloom);
-        _consoleTextController = ConsoleTextController.Instance;
-
+        
         Application.targetFrameRate = 60;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -85,7 +90,7 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
 
     public void ConsoleTextUpdate()
     {
-        _consoleTextController.SIGNAL = Mathf.Floor(1.0f / Time.deltaTime * 10) / 10;
-        _consoleTextController.TIME = Mathf.Floor(timer * 100) / 100;
+        consoleTextController.SIGNAL = Mathf.Floor(1.0f / Time.deltaTime * 10) / 10;
+        consoleTextController.TIME = Mathf.Floor(timer * 100) / 100;
     }
 }

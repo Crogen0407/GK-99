@@ -20,7 +20,7 @@ public enum Attack
     UPPERCUT
 }
 
-public class ConsoleTextController : MonoSingleton<ConsoleTextController>
+public class ConsoleTextController : MonoBehaviour
 {
     [SerializeField] private Condition condition;
     [SerializeField] private Attack current_attack_mode;

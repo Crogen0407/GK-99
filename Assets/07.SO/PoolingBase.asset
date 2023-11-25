@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: PoolingBase
   m_EditorClassIdentifier: 
   pairs:
+  - prefab: {fileID: 7547551840179403707, guid: dd4056c4994660143bc666d46736c26b,
+      type: 3}
+    prefabTypeName: LandingEffect
+    poolCount: 20
   - prefab: {fileID: 3424141713952526106, guid: 24ef5292b1c338f4dbc08c8a1930fd2e,
       type: 3}
     prefabTypeName: Enemy

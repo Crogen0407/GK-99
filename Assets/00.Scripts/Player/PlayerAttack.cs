@@ -16,6 +16,9 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     
     private bool _isAttacking;
     
+    //Managements
+    private GameManager _gameManager;
+    
     public bool isAttacking
     {
         get
@@ -34,7 +37,8 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     
     private void Start()
     {
-        _consoleTextController = ConsoleTextController.Instance;
+        _gameManager = GameManager.Instance;
+        _consoleTextController = _gameManager.consoleTextController;
     }
 
     public void OnAttack(InputAction.CallbackContext context)

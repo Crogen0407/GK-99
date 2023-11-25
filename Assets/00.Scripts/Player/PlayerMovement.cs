@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         
-        _screenEffectController = ScreenEffectController.Instance;
-        _consoleTextController = ConsoleTextController.Instance;
+        _consoleTextController = _gameManager.consoleTextController;
+        _screenEffectController = _gameManager.screenEffectController;
     }
 
     //Set Move Direction
@@ -77,9 +77,11 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
     private void Move()
     {
         if (_playerDash.dashing == true) return;
+        
         Vector3 vec = moveDirection.normalized * moveSpeed;
-
+        
         _rigidbody.velocity = new Vector3(vec.x, _rigidbody.velocity.y, vec.z);
+        
         if (vec.magnitude >= 0.1f)
         {
             if (_playerJump.Jumping == true)

@@ -22,6 +22,7 @@ public class PlayerJump : MonoBehaviour, IConsoleText
 
     //Controllers
     private ConsoleTextController _consoleTextController;
+    private EffectController _effectController;
     
     //Components
     private Rigidbody _rigidbody;
@@ -39,8 +40,12 @@ public class PlayerJump : MonoBehaviour, IConsoleText
     private void Start()
     {
         _gameManager = GameManager.Instance;
-        _consoleTextController = ConsoleTextController.Instance;
+        
+        _consoleTextController = _gameManager.consoleTextController;
+        _effectController = _gameManager.effectController;
+        
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
+        
         isGrounded = true;
     }
 
@@ -50,6 +55,8 @@ public class PlayerJump : MonoBehaviour, IConsoleText
         {
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
             _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+            
         }
     }
 
@@ -58,6 +65,9 @@ public class PlayerJump : MonoBehaviour, IConsoleText
         if (isGrounded)
         {
             _cinemachinePovExtension.StartCameraShake(3, 0.05f);
+            
+            _effectController.CreateEffect("LandingEffect", transform.position - new Vector3(0, 1, 0),
+                Quaternion.identity, 2);
         }
     }
 
@@ -76,7 +86,7 @@ public class PlayerJump : MonoBehaviour, IConsoleText
             Jumping = true;
         }
     }
-
+    
     private void FixedUpdate()
     {
         JumpCheck();
