@@ -71,18 +71,18 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
         
     }
 
-    private void OnAttackStateChange(InputValue value)
-    {
-        float a = value.Get<float>();
-        Debug.Log(Time.realtimeSinceStartup + " : " + a);
-    }
-
     //Set Move Direction
-    private void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 vec = value.Get<Vector2>();
+        Vector2 vec = context.ReadValue<Vector2>();
         horizontalInput = vec.x;
         verticalInput = vec.y;
+    }
+
+    public void OnMoveCancel(InputAction.CallbackContext context)
+    {
+        horizontalInput = 0;
+        verticalInput = 0;
     }
     
     private void Rotate()
@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
         }
     }
     
+    
     private Vector3 velocity;
 
     private void FixedUpdate()
@@ -121,7 +122,7 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
         Move();
         ConsoleTextUpdate();
         Vector3 vec = model.forward;
-        model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 500);
+        model.forward = Vector3.SmoothDamp(vec, orientation.forward, ref velocity, 0.1f, 800);
         
     }
 

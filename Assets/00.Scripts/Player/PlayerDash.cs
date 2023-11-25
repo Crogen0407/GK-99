@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Tweening;
 
 public class PlayerDash : MonoBehaviour, IConsoleText
@@ -50,7 +51,7 @@ public class PlayerDash : MonoBehaviour, IConsoleText
         _cinemachinePovExtension.CameraExpand(60);
     }
     
-    private void OnDash()
+    public void OnDash(InputAction.CallbackContext context)
     {
         Vector3 moveDirection = new Vector3(
             x : _playerMovement.moveDirection.x, 

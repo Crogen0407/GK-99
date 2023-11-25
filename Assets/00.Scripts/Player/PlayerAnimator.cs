@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerAnimator : MonoSingleton<PlayerAnimator>
+public class PlayerAnimator : MonoBehaviour
 {
     private PlayerAttack _playerAttack;
     public Animator _animator;
@@ -18,10 +19,19 @@ public class PlayerAnimator : MonoSingleton<PlayerAnimator>
         _playerAttack.AttackCountAction += ChangeAttackCount;
     }
 
+    public void GetCurrentAnimatorStateInformation(InputAction.CallbackContext context)
+    {
+        _playerAttack.currentAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+    }
+    
     private void ChangeAnimation(string currentAnimation, bool parameter)
     {
         int hashCode = Animator.StringToHash(currentAnimation);
         _animator.SetBool(hashCode, parameter);
+        if (currentAnimation.Equals("Attack"))
+        {
+            _playerAttack.isAttacking = parameter;
+        }
     }
     
     public void ChangeStateToTrueAnimation(string currentAnimation)

@@ -41,10 +41,10 @@ public class PlayerJump : MonoBehaviour, IConsoleText
         _gameManager = GameManager.Instance;
         _consoleTextController = ConsoleTextController.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
-        OnJump();
+        isGrounded = true;
     }
 
-    private void OnJump()
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (isGrounded)
         {

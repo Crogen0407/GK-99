@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "CustomInput",
     "maps": [
         {
             "name": "Player",
@@ -29,7 +29,7 @@
                     "id": "ebf6ba97-ed5e-44a2-bb6a-f27c20bdc069",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(pressPoint=0.1)",
                     "initialStateCheck": true
                 },
                 {
@@ -133,7 +133,7 @@
                     "name": "1D Axis",
                     "id": "ae5a708b-ee9f-43d5-9a47-17cf38f75162",
                     "path": "1DAxis",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",

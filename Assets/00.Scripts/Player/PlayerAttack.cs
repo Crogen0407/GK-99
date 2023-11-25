@@ -7,14 +7,15 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public Action<string, bool> ChangeAnimationAction;
     public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
-
+    public AnimatorStateInfo currentAnimatorStateInfo;
+    
     [SerializeField] private Transform _attackEffectPointRight;
     [SerializeField] private Transform _attackEffectPointLeft;
 
-    
     private float attackDelayTime = 0;
     
     private bool _isAttacking;
+    
     public bool isAttacking
     {
         get
@@ -37,38 +38,39 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
         _consoleTextController = ConsoleTextController.Instance;
     }
 
-    private void OnAttack(InputValue value)
+    public void OnAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("키눌림");
-        if (attackDelayTime > (PlayerAnimator.Instance._animator.GetCurrentAnimatorStateInfo(0).length + 0.1f))
+        if (isAttacking == false)
         {
-            if (PlayerAnimator.Instance._animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 &&
-                PlayerAnimator.Instance._animator.GetBool("Attack") == false)
-            
+            bool isCurrentAnimatorStateEqualsDefault = currentAnimatorStateInfo.IsName("Default");
+            if (isCurrentAnimatorStateEqualsDefault)
             {
-                ChangeAnimationAction?.Invoke("Default", false);
-                attackDelayTime = 0;
-                float dir = value.Get<float>();
-                if (dir != 0)
+                if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)
                 {
-                    if (dir == -1)
+                    attackDelayTime = 0;
+                    Debug.Log("키눌림");
+                    ChangeAnimationAction?.Invoke("Attack", true);
+                    ChangeAnimationAction?.Invoke("Default", false);
+                    float dir = context.ReadValue<float>();
+                    if (dir != 0)
                     {
-                        ChangeAnimationAction?.Invoke("Direction", false);
-                    }
-                    else
-                    {
-                        ChangeAnimationAction?.Invoke("Direction", true);
+                        if (dir < 0)
+                        {
+                            ChangeAnimationAction?.Invoke("Direction", false);
+                        }
+                        else if(dir > 0)
+                        {
+                            ChangeAnimationAction?.Invoke("Direction", true);
+                        }
                     }
                 }
-                ChangeAnimationAction?.Invoke("Attack", true);
-                isAttacking = true;
             }
         }
     }
     
-    private void OnSwitchAttackMode(InputValue value)
+    public void OnSwitchAttackMode(InputAction.CallbackContext context)
     {
-        Vector3 vec = value.Get<Vector3>();
+        Vector3 vec = context.ReadValue<Vector3>();
         float p = 0;
         if (vec != Vector3.zero)
         {
