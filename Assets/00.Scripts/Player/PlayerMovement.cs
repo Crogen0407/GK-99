@@ -4,7 +4,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
+public class PlayerMovement : MonoBehaviour, IConsoleText
 {
     [Header("Movement")]
     public float moveSpeed=10;
@@ -43,13 +43,7 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
         _playerJump = GetComponent<PlayerJump>();
         
         _rigidbody.freezeRotation = true;
-        _healthSystem.Dead += Dead;
         model = transform.Find("Model");
-    }
-
-    private void OnDisable()
-    {
-        _healthSystem.Dead -= Dead;
     }
 
     void Start()
@@ -59,16 +53,6 @@ public class PlayerMovement : MonoBehaviour, IDead, IConsoleText
         
         _screenEffectController = ScreenEffectController.Instance;
         _consoleTextController = ConsoleTextController.Instance;
-    }
-
-    public void Dead()
-    {
-        
-    }
-
-    public void Revival()
-    {
-        
     }
 
     //Set Move Direction

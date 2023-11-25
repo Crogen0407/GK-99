@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SceneLoader : MonoSingleton<SceneLoader>
 {
@@ -25,6 +24,7 @@ public class SceneLoader : MonoSingleton<SceneLoader>
 
     private IEnumerator LoadSceneProcess()
     {
+        yield return null;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         

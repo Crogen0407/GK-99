@@ -17,7 +17,6 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
     public PlayerAttack PlayerAttack;
     
     //Managements
-
     
     //Controllers
     public ConsoleTextController _consoleTextController;
@@ -83,7 +82,6 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         ConsoleTextUpdate();
         timer = Time.time;
     }
-
 
     public void ConsoleTextUpdate()
     {

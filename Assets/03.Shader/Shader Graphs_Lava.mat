@@ -63,11 +63,11 @@ Material:
     - _Cull: 2
     - _DstBlend: 0
     - _IsWave: 1
-    - _Power: 0.9
+    - _Power: 1.08
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 0.82
-    - _Speed: 0.05
+    - _Speed: 0.1
     - _SrcBlend: 1
     - _Surface: 0
     - _Tiling: 6.92
@@ -75,6 +75,6 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _EmssitionColor: {r: 0.3137657, g: 0.034781456, b: 0, a: 1}
-    - _MainColor: {r: 0.2, g: 0.07044479, b: 0.0039215684, a: 1}
+    - _EmssitionColor: {r: 23.968628, g: 1.3023583, b: 0, a: 1}
+    - _MainColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -24,7 +24,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
         }
         set
         {
-            Debug.Log($"isattack을 {value} 설정");
             _isAttacking = value;
         }
     }
@@ -48,7 +47,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
                 if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)
                 {
                     attackDelayTime = 0;
-                    Debug.Log("키눌림");
                     ChangeAnimationAction?.Invoke("Attack", true);
                     ChangeAnimationAction?.Invoke("Default", false);
                     float dir = context.ReadValue<float>();

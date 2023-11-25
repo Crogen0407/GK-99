@@ -20,7 +20,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _IsNoising
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -40,14 +40,18 @@ Material:
     m_Floats:
     - _BlurArea: 10.88
     - _BlurEffect: 0
-    - _BlurStrength: 3.83
+    - _BlurStrength: 4.2
     - _Breathing: 1
-    - _IsNoising: 0
-    - _NoisingEffect: 1
+    - _CompleteNoise: 0
+    - _IsNoising: 1
+    - _Noising: 0
+    - _NoisingEffect: 65.8
+    - _Offset: 15.28
     - _OnlyWhiteAndBlack: 0
+    - _ScreenOffEffect: 0
     - _Twist: 1
     - _TwistNoiseStrength: 0.863
     - _TwistStrength: 9.17
     m_Colors:
-    - _NoiseColor: {r: 0, g: 0.64670134, b: 1, a: 1}
+    - _NoiseColor: {r: 0, g: 0.30471134, b: 1, a: 1}
   m_BuildTextureStacks: []
