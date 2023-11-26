@@ -103,11 +103,11 @@ namespace UnityEngine.Tweening
                 percentTime = currentTime / duration;
                 if(easingFunc != null)
                 {
-                    rigidbody.velocity = Vector3.Lerp(startPoint, endPoint, (float)(easingFunc.Invoke(this, new object[]{percentTime})));
+                    rigidbody.position = Vector3.Lerp(startPoint, endPoint, (float)(easingFunc.Invoke(this, new object[]{percentTime})));
                 }
+                rigidbody.position = endPoint;
                 yield return null;
             }
-            rigidbody.velocity = endPoint;
         }
 
         private IEnumerator Move(Rigidbody rigidbody, Vector3 endPoint, float duration, IEnumerator lateCoroutine, EasingType easing)
@@ -131,7 +131,7 @@ namespace UnityEngine.Tweening
                 }
                 yield return null;
             }
-            rigidbody.velocity = endPoint;
+            rigidbody.position = endPoint;
 
             yield return StartCoroutine(lateCoroutine);
         }

@@ -28,4 +28,4 @@ MonoBehaviour:
   - prefab: {fileID: 8302402256182226567, guid: 8d8daf25df10ffc41b884083012be8e5,
       type: 3}
     prefabTypeName: FireSpirit
-    poolCount: 30
+    poolCount: 0
