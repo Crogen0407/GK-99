@@ -9,9 +9,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public Action ChangeAnimationGameOverAction;
     public AnimatorStateInfo currentAnimatorStateInfo;
     
-    [SerializeField] private Transform _attackEffectPointRight;
-    [SerializeField] private Transform _attackEffectPointLeft;
-
     private float attackDelayTime = 0;
     
     private bool _isAttacking;
@@ -59,6 +56,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
                         if (dir < 0)
                         {
                             ChangeAnimationAction?.Invoke("Direction", false);
+                            
                         }
                         else if(dir > 0)
                         {

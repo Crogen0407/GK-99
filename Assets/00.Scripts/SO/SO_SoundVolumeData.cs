@@ -30,6 +30,7 @@ public class SO_SoundVolumeData : ScriptableObject
         _bgmSoundVolumeText.text = $"< {BGMSoundVolume.ToString()} >";
     }
 
+    //0~10
     public int MSSoundVolume
     {
         get => _msSoundVolume;
@@ -40,7 +41,8 @@ public class SO_SoundVolumeData : ScriptableObject
             _msSoundVolumeText.text = $"< {_msSoundVolume} >";
         }
     }
-
+    
+    //0~10
     public int SFSoundVolume
     {
         get => _sfSoundVolume;
@@ -52,6 +54,7 @@ public class SO_SoundVolumeData : ScriptableObject
         }
     }
 
+    //0~10
     public int BGMSoundVolume
     {
         get => _bgmSoundVolume;

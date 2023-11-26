@@ -21,3 +21,7 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: Enemy
     poolCount: 10
+  - prefab: {fileID: 5945122687905181306, guid: 368aa640e0cc2d04e8060e3fe857df16,
+      type: 3}
+    prefabTypeName: PlayerAttackEffect
+    poolCount: 30

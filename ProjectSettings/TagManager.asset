@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - SoundVolumeSettingUI
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

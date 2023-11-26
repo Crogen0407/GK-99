@@ -4,12 +4,22 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class PlayerAnimator : MonoBehaviour
 {
     private PlayerAttack _playerAttack;
     public Animator _animator;
+
+    [SerializeField] private Transform _attackEffectPointRight;
+    [SerializeField] private Transform _attackEffectPointLeft;
     
+    //Managements
+    private GameManager _gameManager;
+
+    //Controllers
+    private EffectController _effectController;
+
     void Awake()
     {
         _playerAttack = GetComponentInParent<PlayerAttack>();
@@ -17,6 +27,12 @@ public class PlayerAnimator : MonoBehaviour
         _playerAttack.ChangeAnimationAction += ChangeAnimation;
         _playerAttack.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
         _playerAttack.AttackCountAction += ChangeAttackCount;
+    }
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
+        _effectController = _gameManager.effectController;
     }
 
     public void GetCurrentAnimatorStateInformation(InputAction.CallbackContext context)
@@ -62,8 +78,19 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetTrigger("GameOver");
     }
 
-    // private void FixedUpdate()
-    // {
-    //     _playerAttack.isAttacking = _animator.GetBool("Attack");
-    // }
+    public void CreateAttackEffect(float direction)
+    {
+        if (direction > 0)
+        {
+             GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointRight.position,
+                _attackEffectPointRight.rotation, 1);
+             obj.GetComponent<VisualEffect>().Play();
+        }
+        else if(direction < 0)
+        {
+            GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointLeft.position,
+                _attackEffectPointLeft.rotation, 1);
+            obj.GetComponent<VisualEffect>().Play();
+        }
+    }
 }
