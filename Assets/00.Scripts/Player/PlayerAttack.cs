@@ -8,14 +8,13 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
     public AnimatorStateInfo currentAnimatorStateInfo;
-    
     private float attackDelayTime = 0;
     
     private bool _isAttacking;
     
     //Components
     private Rigidbody _rigidbody;
-    
+
     //Managements
     private GameManager _gameManager;
     

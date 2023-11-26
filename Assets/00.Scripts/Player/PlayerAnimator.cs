@@ -8,11 +8,12 @@ using UnityEngine.VFX;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    private PlayerAttack _playerAttack;
-    public Animator _animator;
-    
     [SerializeField] private Transform[] _attackEffectPointRight;
     [SerializeField] private Transform[] _attackEffectPointLeft;
+    
+    //Components
+    public Animator _animator;
+    private PlayerAttack _playerAttack;
     
     //Managements
     private GameManager _gameManager;

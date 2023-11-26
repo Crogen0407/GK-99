@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 8075969577972686719}
   - component: {fileID: 885131281488046665}
   - component: {fileID: 1192734397679256404}
+  - component: {fileID: 6558247857478216245}
   m_Layer: 7
   m_Name: FireSpirit
   m_TagString: Untagged
@@ -414,3 +415,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _condition: 0
   hp: 3
+--- !u!114 &6558247857478216245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302402256182226567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e544303618a74de0b69a93980b1c9cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

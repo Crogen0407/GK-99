@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyState : MonoBehaviour, ILife
@@ -9,6 +10,7 @@ public class EnemyState : MonoBehaviour, ILife
     //Managements
     private GameManager _gameManager;
     private PoolManager _poolManager;
+    private EffectController _effectController;
     
     private void Awake()
     {
@@ -25,12 +27,12 @@ public class EnemyState : MonoBehaviour, ILife
 
     public void Damaged(Vector3 damagedDirection)
     {
-        Debug.Log("쥭어셩");
         _rigidbody.AddForce(damagedDirection * -10, ForceMode.Impulse);
     }
 
     public void Dead()
     {
+        _effectController.CreateEffect("EnemyDieEffect", transform.position, quaternion.identity, 1);
         _poolManager.Push("FireSpirit", gameObject);
     }
 }

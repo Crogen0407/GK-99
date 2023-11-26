@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _msSoundVolume: 10
   _sfSoundVolume: 10
-  _bgmSoundVolume: 10
+  _bgmSoundVolume: 2
