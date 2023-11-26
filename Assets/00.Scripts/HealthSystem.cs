@@ -9,7 +9,8 @@ public class HealthSystem : MonoBehaviour
     
     public Action Dead;
     public Action Damaged;
-    [SerializeField] private  int hp = 100;
+    
+    [SerializeField] private  int hp = 3;
 
     private void Awake()
     {
@@ -42,7 +43,19 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (transform.CompareTag("Enemy"))
+        {
+            if (other.transform.CompareTag("PlayerAttack"))
+            {
+                Hp--;
+            }
+        }
+    }
 }
+
 
 public interface ILife
 {

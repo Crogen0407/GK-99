@@ -21,7 +21,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void LoadSoundVolume()
     {
-        Debug.Log("djdj");
         _audioMixer.SetFloat("Master", Mathf.Log10(_soundVolumeData.MSSoundVolume/10f) * 20);
         _audioMixer.SetFloat("BGM", Mathf.Log10(_soundVolumeData.BGMSoundVolume/10f) * 20);
         _audioMixer.SetFloat("SFX", Mathf.Log10(_soundVolumeData.SFSoundVolume/10f) * 20);

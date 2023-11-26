@@ -13,6 +13,9 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     
     private bool _isAttacking;
     
+    //Components
+    private Rigidbody _rigidbody;
+    
     //Managements
     private GameManager _gameManager;
     
@@ -28,10 +31,15 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
         }
     }
 
-    private Attack _currentAttackMode;
+    public Attack currentAttackMode;
     
     private ConsoleTextController _consoleTextController;
-    
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
         _gameManager = GameManager.Instance;
@@ -63,6 +71,11 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
                             ChangeAnimationAction?.Invoke("Direction", true);
                         }
                     }
+
+                    if (currentAttackMode == Attack.JAP)
+                    {
+                        _rigidbody.AddForce(Camera.main.transform.forward * -20, ForceMode.Impulse);
+                    }
                 }
             }
         }
@@ -77,17 +90,17 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
             if(vec.x >= 1)
             {
                 p = .0f;
-                _currentAttackMode = Attack.JAP;
+                currentAttackMode = Attack.JAP;
             }
             else if(vec.y >= 1)
             {
                 p = 0.5f;
-                _currentAttackMode = Attack.HOOK;
+                currentAttackMode = Attack.HOOK;
             }
             else if(vec.z >= 1)
             {
                 p = 1.0f;
-                _currentAttackMode = Attack.UPPERCUT;
+                currentAttackMode = Attack.UPPERCUT;
 
             }
             AttackCountAction?.Invoke(p);
@@ -98,7 +111,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
 
     public void ConsoleTextUpdate()
     {
-        _consoleTextController.CURRENT_ATTACK_MODE = _currentAttackMode;
+        _consoleTextController.CURRENT_ATTACK_MODE = currentAttackMode;
     }
 
     private void Update()

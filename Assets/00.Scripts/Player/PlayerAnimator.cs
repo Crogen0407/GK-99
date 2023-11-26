@@ -10,9 +10,9 @@ public class PlayerAnimator : MonoBehaviour
 {
     private PlayerAttack _playerAttack;
     public Animator _animator;
-
-    [SerializeField] private Transform _attackEffectPointRight;
-    [SerializeField] private Transform _attackEffectPointLeft;
+    
+    [SerializeField] private Transform[] _attackEffectPointRight;
+    [SerializeField] private Transform[] _attackEffectPointLeft;
     
     //Managements
     private GameManager _gameManager;
@@ -37,7 +37,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void GetCurrentAnimatorStateInformation(InputAction.CallbackContext context)
     {
-        _playerAttack.currentAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        _playerAttack.currentAnimatorStateInfo  = _animator.GetCurrentAnimatorStateInfo(0);
     }
     
     private void ChangeAnimation(string currentAnimation, bool parameter)
@@ -80,16 +80,29 @@ public class PlayerAnimator : MonoBehaviour
 
     public void CreateAttackEffect(float direction)
     {
+        int attackIndex = 0;
+        switch (_playerAttack.currentAttackMode)
+        {
+            case Attack.JAP :
+                attackIndex = 0;
+                break;
+            case Attack.HOOK :
+                attackIndex = 1;
+                break;
+            case Attack.UPPERCUT :
+                attackIndex = 2;
+                break;
+        }
         if (direction > 0)
         {
-             GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointRight.position,
-                _attackEffectPointRight.rotation, 1);
+             GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointRight[attackIndex].position,
+                _attackEffectPointRight[attackIndex].rotation, 1);
              obj.GetComponent<VisualEffect>().Play();
         }
         else if(direction < 0)
         {
-            GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointLeft.position,
-                _attackEffectPointLeft.rotation, 1);
+            GameObject obj = _effectController.CreateEffect("PlayerAttackEffect", _attackEffectPointLeft[attackIndex].position,
+                _attackEffectPointLeft[attackIndex].rotation, 1);
             obj.GetComponent<VisualEffect>().Play();
         }
     }
