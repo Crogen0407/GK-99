@@ -25,6 +25,21 @@ public class EffectController : MonoBehaviour
         
         return effectObj;
     }
+    
+    public GameObject CreateEffect(string effectName, Transform parent, Vector3 vec, Quaternion rot, float duration)
+    {
+        GameObject effectObj = _poolManager.Pop(effectName, parent, vec, rot);
+        foreach (var name in groundCheckableEffectNames)
+        {
+            if (name == effectName)
+            {
+                effectObj.transform.Find("Collision").GetComponent<ParticleSystem>().collision.SetPlane(0, _platform);
+            }
+        }
+        StartCoroutine(EffectDie(effectName, effectObj, duration));
+        
+        return effectObj;
+    }
 
     private IEnumerator EffectDie(string effectName, GameObject dieObject, float duration)
     {

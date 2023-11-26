@@ -84,6 +84,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public void OnSwitchAttackMode(InputAction.CallbackContext context)
     {
         Vector3 vec = context.ReadValue<Vector3>();
+        
         float p = 0;
         if (vec != Vector3.zero)
         {
@@ -101,11 +102,9 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
             {
                 p = 1.0f;
                 currentAttackMode = Attack.UPPERCUT;
-
             }
             AttackCountAction?.Invoke(p);
         }
-
         ConsoleTextUpdate();
     }
 

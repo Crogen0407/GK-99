@@ -37,13 +37,6 @@ public class PoolManager : MonoBehaviour
 			}
         }
     }
-    
-    public void Push(string type, GameObject gameObject)
-    {
-        gameObject.transform.SetParent(null);
-        gameObject.SetActive(false);
-        poolDic[type].Enqueue(gameObject);
-    }
 
     public GameObject Pop(string type, Vector3 vec, Quaternion rot)
     {
@@ -69,7 +62,6 @@ public class PoolManager : MonoBehaviour
 
         return obj;
     }
-
     public GameObject Pop(string type, Transform parentTrm)
     {
         GameObject obj = poolDic[type].Dequeue();
@@ -80,7 +72,9 @@ public class PoolManager : MonoBehaviour
             {
                 if (PoolingBase.pairs[i].prefabTypeName == type)
                 {
-                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab, Vector3.zero, Quaternion.identity);
+                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
+                    poolObject.transform.localPosition = Vector3.zero;
+                    poolObject.transform.localRotation = Quaternion.identity;
                     poolObject.name = poolObject.name.Replace("(Clone)","");
                     Push(type, poolObject);
                     break;
@@ -90,8 +84,40 @@ public class PoolManager : MonoBehaviour
         
         obj.SetActive(true);
         obj.transform.SetParent(parentTrm);
-        obj.transform.position = parentTrm.position;
-
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
         return obj;
+    }
+    public GameObject Pop(string type, Transform parentTrm, Vector3 vec, Quaternion rot)
+    {
+        GameObject obj = poolDic[type].Dequeue();
+
+        if (poolDic[type].Count == 0)
+        {
+            for (int i = 0; i < PoolingBase.pairs.Count; i++)
+            {
+                if (PoolingBase.pairs[i].prefabTypeName == type)
+                {
+                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
+                    poolObject.transform.localPosition = vec;
+                    poolObject.transform.localRotation = rot;
+                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    Push(type, poolObject);
+                    break;
+                }
+            }
+        }
+        
+        obj.SetActive(true);
+        obj.transform.SetParent(parentTrm);
+        obj.transform.localPosition = vec;
+        obj.transform.localRotation = rot;
+        return obj;
+    }
+    public void Push(string type, GameObject gameObject)
+    {
+        gameObject.transform.SetParent(null);
+        gameObject.SetActive(false);
+        poolDic[type].Enqueue(gameObject);
     }
 }

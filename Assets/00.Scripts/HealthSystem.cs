@@ -6,6 +6,8 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public Condition _condition;
+
+    private EnemyState _enemyState;
     
     public Action Dead;
     public Action Damaged;
@@ -15,6 +17,7 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         _condition = Condition.GOOD;
+        _enemyState = GetComponent<EnemyState>();
     }
 
     public int Hp
@@ -46,11 +49,12 @@ public class HealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (transform.CompareTag("Enemy"))
+        if (_enemyState != null)
         {
             if (other.transform.CompareTag("PlayerAttack"))
             {
                 Hp--;
+                _enemyState.Damaged(other.transform.position - transform.position);
             }
         }
     }

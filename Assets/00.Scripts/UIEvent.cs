@@ -61,6 +61,8 @@ public class UIEvent : MonoBehaviour
                     SoundVolumeData.BGMSoundVolume += volumeCount; 
                     break;
             }
+
+            SoundManager.Instance.LoadSoundVolume();
         }
     }
     
