@@ -202,6 +202,5 @@ public class ConsoleTextController : MonoBehaviour
         vec.z = Mathf.Floor(vec.z * 10) / 10;
         return $"{vec.x},{vec.y},{vec.z}";
     }
-
 }
 

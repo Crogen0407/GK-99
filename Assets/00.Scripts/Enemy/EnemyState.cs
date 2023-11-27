@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Tweening;
 
 public class EnemyState : MonoBehaviour, ILife
 {
     private Rigidbody _rigidbody;
     private HealthSystem _healthSystem;
-    
+    private AudioSource _audioSource;
+
+
+    private CinemachinePOVExtension _cinemachinePovExtension;
+
     //Managements
     private GameManager _gameManager;
     private PoolManager _poolManager;
@@ -20,19 +26,23 @@ public class EnemyState : MonoBehaviour, ILife
 
     private void Start()
     {
+        _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         _gameManager = GameManager.Instance;
         _poolManager = PoolManager.Instance;
+        _effectController = _gameManager.effectController;
         _healthSystem.Dead += Dead;
     }
 
     public void Damaged(Vector3 damagedDirection)
     {
-        _rigidbody.AddForce(damagedDirection * -10, ForceMode.Impulse);
+        Tweening.Instance.DOMove(_rigidbody, damagedDirection * -1, 0.5f, EasingType.EaseInBack);
     }
 
     public void Dead()
     {
-        _effectController.CreateEffect("EnemyDieEffect", transform.position, quaternion.identity, 1);
+        PoolManager.Instance.Pop("LightningBall", transform.position, Quaternion.identity);
+        _gameManager.TimeSlow(0.5f);
+        _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity, 2);
         _poolManager.Push("FireSpirit", gameObject);
     }
 }

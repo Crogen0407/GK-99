@@ -29,7 +29,11 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: FireSpirit
     poolCount: 0
-  - prefab: {fileID: 8302402256182226567, guid: 8d8daf25df10ffc41b884083012be8e5,
+  - prefab: {fileID: 8720369608669802242, guid: 2bdbc10aceab4d747bfb7fc05236ca0a,
       type: 3}
     prefabTypeName: EnemyDieEffect
+    poolCount: 20
+  - prefab: {fileID: 8323958943172105503, guid: 75adb22e021a718488106794fa903c98,
+      type: 3}
+    prefabTypeName: LightningBall
     poolCount: 20

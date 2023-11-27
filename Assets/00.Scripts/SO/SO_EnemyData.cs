@@ -6,6 +6,7 @@ using UnityEngine;
 public class SO_EnemyData : ScriptableObject
 {
     public float moveSpeed;
+    public float rotateSpeed;
     public float viewAngle;
     public float viewRadius;
     public float attackDistance;

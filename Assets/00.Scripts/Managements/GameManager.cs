@@ -93,4 +93,17 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         consoleTextController.SIGNAL = Mathf.Floor(1.0f / Time.deltaTime * 10) / 10;
         consoleTextController.TIME = Mathf.Floor(timer * 100) / 100;
     }
+
+    public void TimeSlow(float duration)
+    {
+        StopCoroutine(TimeSlowCoroutine(duration));
+        StartCoroutine(TimeSlowCoroutine(duration));
+    }
+
+    private IEnumerator TimeSlowCoroutine(float duration)
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1;
+    }
 }

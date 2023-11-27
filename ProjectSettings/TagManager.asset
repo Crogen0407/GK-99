@@ -8,6 +8,7 @@ TagManager:
   - SoundVolumeSettingUI
   - PlayerAttack
   - Enemy
+  - PlayerAttack_Strike
   layers:
   - Default
   - TransparentFX

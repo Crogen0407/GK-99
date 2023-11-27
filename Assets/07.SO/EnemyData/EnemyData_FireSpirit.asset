@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b3aabd3976eab4bbc2b99b3265ee05, type: 3}
   m_Name: EnemyData_FireSpirit
   m_EditorClassIdentifier: 
-  moveSpeed: 3.5
-  viewAngle: 250
-  viewRadius: 10.56
-  attackDistance: 2
+  moveSpeed: 5
+  rotateSpeed: 500
+  viewAngle: 360
+  viewRadius: 50
+  attackDistance: 5

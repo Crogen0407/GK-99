@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
         //_animator = transform.Find("Model").GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _agent.speed = enemyData.moveSpeed;
+        _agent.angularSpeed = enemyData.rotateSpeed;
         _agent.stoppingDistance = enemyData.attackDistance;
         _viewAngle = enemyData.viewAngle;
         _viewRadius = enemyData.viewRadius;
