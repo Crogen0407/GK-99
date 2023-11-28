@@ -9871,7 +9871,7 @@ GameObject:
   - component: {fileID: 4260501718234733884}
   - component: {fileID: 6805613002747985940}
   m_Layer: 0
-  m_Name: LightningBall
+  m_Name: LightningBallEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

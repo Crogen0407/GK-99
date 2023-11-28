@@ -18,6 +18,15 @@ public class EnemyMovement : MonoBehaviour
 
     private bool _move;
 
+    //Components
+    private NavMeshAgent _agent;
+    private EnemyAnimator _enemyAnimator;
+    private Rigidbody _rigidbody;
+    private EnemyAttack _enemyAttack;
+    
+    //Managements
+    private GameManager _gameManager;
+
     public bool Move
     {
         get => _move;
@@ -27,22 +36,19 @@ public class EnemyMovement : MonoBehaviour
             
         }
     }
-    //Components
-    private NavMeshAgent _agent;
-    private Animator _animator;
-    private Rigidbody _rigidbody;
     
-    //Managements
-    private GameManager _gameManager;
-    
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _agent = GetComponent<NavMeshAgent>();
+        _enemyAttack = GetComponent<EnemyAttack>();
+        _enemyAnimator = transform.Find("FireSpirit").GetComponent<EnemyAnimator>();
+    }
+
     void Start()
     {
         _gameManager = GameManager.Instance;
-        
-        //GetComponents
-        _agent = GetComponent<NavMeshAgent>();
         //_animator = transform.Find("Model").GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
         _agent.speed = enemyData.moveSpeed;
         _agent.angularSpeed = enemyData.rotateSpeed;
         _agent.stoppingDistance = enemyData.attackDistance;
@@ -88,11 +94,22 @@ public class EnemyMovement : MonoBehaviour
             float targetAngle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(transform.forward, targetDir));
             if (targetAngle  <= _viewAngle * 0.5f)
             {
+                _enemyAttack.playerToMyDistance = Vector3.Distance(transform.position, coll.transform.position);
                 float distance = Vector3.Distance(coll.transform.position, transform.position);
-                Debug.DrawRay(_moveDirection, targetDir * Vector3.Distance(coll.transform.position, transform.position), Color.green);
+                Debug.DrawRay(_moveDirection, targetDir * _enemyAttack.playerToMyDistance, Color.green);
                 if (!Physics.Raycast(_moveDirection, targetDir * distance, distance, _obstacleMask))
                 {
-                    _agent.SetDestination(coll.transform.position);
+                    _enemyAnimator.GetCurrentAnimatorStateInformation();
+                    if (_enemyAttack.playerToMyDistance < 10)
+                    {
+                        _agent.SetDestination(transform.position);
+                        _enemyAttack.OnAttack();
+                        transform.forward = targetDir;
+                    }
+                    else
+                    {
+                        _agent.SetDestination(coll.transform.position);
+                    }
                 }
             }
         }

@@ -37,3 +37,7 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: LightningBall
     poolCount: 20
+  - prefab: {fileID: 8323958943172105503, guid: 75adb22e021a718488106794fa903c98,
+      type: 3}
+    prefabTypeName: EnemyBullet
+    poolCount: 100

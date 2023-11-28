@@ -28,6 +28,11 @@ public class EnemyAnimator : MonoBehaviour
         _effectController = _gameManager.effectController;
     }
 
+    public void GetCurrentAnimatorStateInformation()
+    {
+        _enemyAttack.currentAnimatorStateInfo  = _animator.GetCurrentAnimatorStateInfo(0);
+    }
+    
     private void ChangeAnimation(string currentAnimation, bool parameter)
     {
         int hashCode = Animator.StringToHash(currentAnimation);
@@ -61,6 +66,12 @@ public class EnemyAnimator : MonoBehaviour
         _animator.SetTrigger("GameOver");
     }
 
+    public void FireBullet()
+    {
+        _effectController.CreateEffect("EnemyBullet", transform.position,
+            Quaternion.Euler(0, _enemyAttack.transform.eulerAngles.y, 0), 10);
+    }
+    
     public void CreateAttackEffect(float direction)
     {
     //     int attackIndex = 0;

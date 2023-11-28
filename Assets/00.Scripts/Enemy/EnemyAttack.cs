@@ -5,12 +5,11 @@ using UnityEngine.InputSystem;
 public class EnemyAttack : MonoBehaviour
 {
     public Action<string, bool> ChangeAnimationAction;
-    public Action<float> AttackCountAction;
     public Action ChangeAnimationGameOverAction;
     public AnimatorStateInfo currentAnimatorStateInfo;
-    private float attackDelayTime = 0;
     
     private bool _isAttacking;
+    public float playerToMyDistance = 100;
     
     //Components
     private Rigidbody _rigidbody;
@@ -27,10 +26,9 @@ public class EnemyAttack : MonoBehaviour
         set
         {
             _isAttacking = value;
+            Debug.Log($"Attacking : {value}");
         }
     }
-
-    private ConsoleTextController _consoleTextController;
 
     private void Awake()
     {
@@ -49,18 +47,16 @@ public class EnemyAttack : MonoBehaviour
             bool isCurrentAnimatorStateEqualsDefault = currentAnimatorStateInfo.IsName("Idle");
             if (isCurrentAnimatorStateEqualsDefault)
             {
-                if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)
-                {
-                    attackDelayTime = 0;
-                    ChangeAnimationAction?.Invoke("Attack", true);
-                    ChangeAnimationAction?.Invoke("Idle", false);
-                }
+                Debug.Log(isAttacking);
+                ChangeAnimationAction?.Invoke("Attack", true);
+                ChangeAnimationAction?.Invoke("Idle", false);
+                // if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)
+                // {
+                //     attackDelayTime = 0;
+                //     ChangeAnimationAction?.Invoke("Attack", true);
+                //     ChangeAnimationAction?.Invoke("Idle", false);
+                // }
             }
         }
-    }
-    
-    private void Update()
-    {
-        attackDelayTime += Time.deltaTime;
     }
 }
