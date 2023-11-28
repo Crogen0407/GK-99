@@ -94,15 +94,15 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         consoleTextController.TIME = Mathf.Floor(timer * 100) / 100;
     }
 
-    public void TimeSlow(float duration)
+    public void TimeSlow(float timeScale, float duration)
     {
-        StopCoroutine(TimeSlowCoroutine(duration));
-        StartCoroutine(TimeSlowCoroutine(duration));
+        StopCoroutine(TimeSlowCoroutine(timeScale, duration));
+        StartCoroutine(TimeSlowCoroutine(timeScale, duration));
     }
 
-    private IEnumerator TimeSlowCoroutine(float duration)
+    private IEnumerator TimeSlowCoroutine(float timeScale, float duration)
     {
-        Time.timeScale = 0.1f;
+        Time.timeScale = timeScale;
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1;
     }

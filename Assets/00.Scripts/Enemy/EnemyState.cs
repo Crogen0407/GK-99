@@ -35,13 +35,17 @@ public class EnemyState : MonoBehaviour, ILife
 
     public void Damaged(Vector3 damagedDirection)
     {
-        Tweening.Instance.DOMove(_rigidbody, damagedDirection * -1, 0.5f, EasingType.EaseInBack);
+        Tweening.Instance.DOMove(_rigidbody, -damagedDirection + _rigidbody.position , 0.5f, EasingType.EaseInBack);
     }
 
     public void Dead()
     {
         PoolManager.Instance.Pop("LightningBall", transform.position, Quaternion.identity);
-        _gameManager.TimeSlow(0.5f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, gameObject.layer);
+        if (colliders.Length == 0)
+        {
+            _gameManager.TimeSlow(0.1f, 0.5f);
+        }
         _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity, 2);
         _poolManager.Push("FireSpirit", gameObject);
     }

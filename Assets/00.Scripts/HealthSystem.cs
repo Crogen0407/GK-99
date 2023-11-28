@@ -54,7 +54,6 @@ public class HealthSystem : MonoBehaviour
             if (other.transform.CompareTag("PlayerAttack"))
             {
                 Hp--;
-                _enemyState.Damaged(other.transform.position - transform.position);
             }
         }
     }

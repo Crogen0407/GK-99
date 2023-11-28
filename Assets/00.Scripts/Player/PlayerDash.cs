@@ -44,20 +44,6 @@ public class PlayerDash : MonoBehaviour, IConsoleText
         _screenEffectController = _gameManager.screenEffectController;
 
     }
-
-    private IEnumerator EndDash(Vector3 hitWallPosition, bool isHitWall = false)
-    {
-        yield return null;
-        dashing = false;
-        _screenEffectController.SetBool("BlurEffect", false);
-        _cinemachinePovExtension.CameraExpand(60);
-        if (isHitWall == true)
-        {
-            Vector3 directionVector = new Vector3(90, 0,
-                Camera.main.transform.eulerAngles.y - 180);
-            _effectController.CreateEffect("LandingEffect", hitWallPosition, Quaternion.Euler(directionVector), 2);
-        }
-    }
     
     public void OnDash(InputAction.CallbackContext context)
     {
@@ -88,7 +74,7 @@ public class PlayerDash : MonoBehaviour, IConsoleText
                 {
                     _currentdelayTimer = 0;
                     dashing = true;
-                    Tweening.Instance.DOMove(_rigidbody,  hit.point - rayDirection * 0.01f, 0.3f, EndDash(hit.point, true), EasingType.EaseOutSine);
+                    Tweening.Instance.DOMove(_rigidbody,  hit.point - rayDirection.normalized * 0.5f, 0.4f, EndDash(hit.point, true), EasingType.EaseOutExpo);
                     _screenEffectController.SetBool("BlurEffect", true);
                     _cinemachinePovExtension.CameraExpand(58);
                     return;
@@ -96,13 +82,27 @@ public class PlayerDash : MonoBehaviour, IConsoleText
                 
                 _currentdelayTimer = 0;
                 dashing = true;
-                Tweening.Instance.DOMove(_rigidbody, dashEndPoint, 0.3f, EndDash(Vector3.zero), EasingType.EaseOutSine);
+                Tweening.Instance.DOMove(_rigidbody, dashEndPoint, 0.4f, EndDash(Vector3.zero), EasingType.EaseOutCubic);
                 _screenEffectController.SetBool("BlurEffect", true);
                 _cinemachinePovExtension.CameraExpand(58);
             }
         }
     }
 
+    private IEnumerator EndDash(Vector3 hitWallPosition, bool isHitWall = false)
+    {
+        yield return null;
+        dashing = false;
+        _screenEffectController.SetBool("BlurEffect", false);
+        _cinemachinePovExtension.CameraExpand(60);
+        if (isHitWall == true)
+        {
+            Vector3 directionVector = new Vector3(90, 0,
+                Camera.main.transform.eulerAngles.y - 180);
+            _effectController.CreateEffect("LandingEffect", hitWallPosition, Quaternion.Euler(directionVector), 2);
+        }
+    }
+    
     private void Update()
     {
         _currentdelayTimer += Time.deltaTime;
