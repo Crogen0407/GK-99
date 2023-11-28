@@ -16,6 +16,17 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask _obstacleMask;
     private Vector3 _moveDirection;
 
+    private bool _move;
+
+    public bool Move
+    {
+        get => _move;
+        set
+        {
+            _move = value;
+            
+        }
+    }
     //Components
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -98,9 +109,9 @@ public class EnemyMovement : MonoBehaviour
             Vector3 leftDir = AngleToDir(transform.eulerAngles.y - _viewAngle * 0.5f);;
             Vector3 looktDir = transform.forward;
             
-            Debug.DrawRay(transform.position, rightDir * _viewRadius, Color.blue);
-            Debug.DrawRay(transform.position, leftDir * _viewRadius, Color.blue);
-            Debug.DrawRay(transform.position, looktDir * _viewRadius, Color.cyan);
+            Debug.DrawRay(transform.position, rightDir * _viewRadius, Color.magenta);
+            Debug.DrawRay(transform.position, leftDir * _viewRadius, Color.magenta);
+            Debug.DrawRay(transform.position, looktDir * _viewRadius, Color.green);
         }
     }
 
