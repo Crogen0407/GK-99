@@ -9671,6 +9671,7 @@ GameObject:
   - component: {fileID: 3175550942844054081}
   - component: {fileID: 6662812297039121728}
   - component: {fileID: 2264340300816647249}
+  - component: {fileID: 4492983010754961779}
   m_Layer: 11
   m_Name: EnemyBulletEffect
   m_TagString: EnemyBullet
@@ -14543,6 +14544,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4492983010754961779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693481883520101177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9123394c18e941109c1d1bc6421b2141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2741560061627102635
 GameObject:
   m_ObjectHideFlags: 0

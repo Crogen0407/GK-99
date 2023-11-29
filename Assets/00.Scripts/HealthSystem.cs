@@ -8,6 +8,7 @@ public class HealthSystem : MonoBehaviour
     public Condition condition;
 
     private EnemyState _enemyState;
+    private PlayerAttack _playerAttack;
     
     public Action Dead;
     public Action Damaged;
@@ -17,6 +18,11 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         _enemyState = GetComponent<EnemyState>();
+    }
+
+    private void Start()
+    {
+        _playerAttack = FindObjectOfType<PlayerAttack>();
     }
 
     public int Hp
@@ -53,7 +59,18 @@ public class HealthSystem : MonoBehaviour
         {
             if (other.transform.CompareTag("PlayerAttack"))
             {
-                Hp--;
+                switch (_playerAttack.currentAttackMode)
+                {
+                    case Attack.JAP :
+                        Hp--;   
+                        break;
+                    case Attack.HOOK :
+                        Hp-=3;   
+                        break;
+                    case Attack.UPPERCUT :
+                        Hp-=4;   
+                        break;
+                }
             }
         }
     }

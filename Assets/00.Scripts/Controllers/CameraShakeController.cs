@@ -25,9 +25,9 @@ public class CameraShakeController : MonoBehaviour
         _cinemachineBasicMultiChannelPerlin.m_FrequencyGain = 0;
     }
 
-    public void Shake(float amplitudeGain, float frequencyGain, float duration)
+    private void Shake(float amplitudeGain, float frequencyGain, float duration)
     {
-        StopCoroutine(CameraShake(amplitudeGain, frequencyGain, duration));
+       StopAllCoroutines();
         StartCoroutine(CameraShake(amplitudeGain, frequencyGain, duration));
     }
 

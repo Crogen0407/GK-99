@@ -54,9 +54,9 @@ public class PlayerDash : MonoBehaviour, IConsoleText
             );
         
         Vector3 rayDirection = new Vector3(
-            x : (_playerMovement.orientation.forward * dashForce).x,
+            x : (moveDirection * dashForce).x,
             y : 0,
-            z : (_playerMovement.orientation.forward * dashForce).z
+            z : (moveDirection * dashForce).z
             );
         
         if (moveDirection.sqrMagnitude > 0.1f)

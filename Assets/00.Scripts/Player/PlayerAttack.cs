@@ -18,6 +18,9 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     //Managements
     private GameManager _gameManager;
     
+    //Controllers
+    private CameraShakeController _cameraShakeController;
+    
     public bool isAttacking
     {
         get
@@ -42,6 +45,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     private void Start()
     {
         _gameManager = GameManager.Instance;
+        _cameraShakeController = _gameManager.cameraShakeController;
         _consoleTextController = _gameManager.consoleTextController;
     }
 
@@ -49,6 +53,7 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     {
         if (isAttacking == false)
         {
+            //_cameraShakeController.Shake(0.7f, 10, 0.2f);
             bool isCurrentAnimatorStateEqualsDefault = currentAnimatorStateInfo.IsName("Default");
             if (isCurrentAnimatorStateEqualsDefault)
             {
@@ -78,7 +83,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
     public void OnSwitchAttackMode(InputAction.CallbackContext context)
     {
         Vector3 vec = context.ReadValue<Vector3>();
-        
         float p = 0;
         if (vec != Vector3.zero)
         {

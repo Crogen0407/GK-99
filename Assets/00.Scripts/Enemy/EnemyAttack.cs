@@ -42,6 +42,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.Instance;
+        
         _effectController = _gameManager.effectController;
     }
 

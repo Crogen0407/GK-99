@@ -92,10 +92,8 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
         {
             if (_playerJump.Jumping == true)
             {
-                _cameraShakeController.EndShake();
                 return; 
             }
-            _cameraShakeController.Shake(Random.Range(0.4f, 1), 0.1f);
             _screenEffectController.SetBool("Breathing", false);
             _isWalking = true;
         }

@@ -6,6 +6,8 @@ using UnityEngine.Tweening;
 
 public class EnemyState : MonoBehaviour, ILife
 {
+    public int myLevel = 1;
+    
     private Rigidbody _rigidbody;
     private HealthSystem _healthSystem;
     private AudioSource _audioSource;
@@ -15,7 +17,10 @@ public class EnemyState : MonoBehaviour, ILife
 
     //Managements
     private GameManager _gameManager;
+    private ScoreManager _scoreManager;
     private PoolManager _poolManager;
+    
+    //Controllers
     private EffectController _effectController;
     
     private void Awake()
@@ -47,6 +52,7 @@ public class EnemyState : MonoBehaviour, ILife
             _gameManager.TimeSlow(0.1f, 0.5f);
         }
         _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity, 2);
+        _scoreManager.Score += myLevel * 10; 
         _poolManager.Push("FireSpirit", gameObject);
     }
 }

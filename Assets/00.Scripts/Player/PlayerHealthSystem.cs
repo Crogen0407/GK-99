@@ -52,7 +52,7 @@ public class PlayerHealthSystem : MonoBehaviour, ILife
     private void Damaged()
     {
         _consoleTextController.CONDITION = _healthSystem.condition;
-        _gameManager.cameraShakeController.Shake(10, 10, 2);
+        //_gameManager.cameraShakeController.Shake(10, 10, 2);
         if (_healthSystem.Hp == 1)
         {   
             _screenEffectController.SetBool("Noising", true);
