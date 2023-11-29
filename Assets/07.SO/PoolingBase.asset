@@ -31,13 +31,13 @@ MonoBehaviour:
     poolCount: 0
   - prefab: {fileID: 8720369608669802242, guid: 2bdbc10aceab4d747bfb7fc05236ca0a,
       type: 3}
-    prefabTypeName: EnemyDieEffect
-    poolCount: 20
+    prefabTypeName: EnemyAttackHitEffect
+    poolCount: 30
   - prefab: {fileID: 8323958943172105503, guid: 75adb22e021a718488106794fa903c98,
       type: 3}
     prefabTypeName: LightningBall
     poolCount: 20
-  - prefab: {fileID: 8323958943172105503, guid: 75adb22e021a718488106794fa903c98,
+  - prefab: {fileID: 2693481883520101177, guid: fd235735191091040b073fadd809e593,
       type: 3}
     prefabTypeName: EnemyBullet
     poolCount: 100

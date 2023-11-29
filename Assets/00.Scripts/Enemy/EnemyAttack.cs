@@ -7,6 +7,8 @@ public class EnemyAttack : MonoBehaviour
     public Action<string, bool> ChangeAnimationAction;
     public Action ChangeAnimationGameOverAction;
     public AnimatorStateInfo currentAnimatorStateInfo;
+
+    [SerializeField] private float fireForce = 4;
     
     private bool _isAttacking;
     public float playerToMyDistance = 100;
@@ -17,6 +19,9 @@ public class EnemyAttack : MonoBehaviour
     //Managements
     private GameManager _gameManager;
     
+    //Controllers
+    private EffectController _effectController;
+    
     public bool isAttacking
     {
         get
@@ -26,7 +31,6 @@ public class EnemyAttack : MonoBehaviour
         set
         {
             _isAttacking = value;
-            Debug.Log($"Attacking : {value}");
         }
     }
 
@@ -38,6 +42,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.Instance;
+        _effectController = _gameManager.effectController;
     }
 
     public void OnAttack()
@@ -47,7 +52,6 @@ public class EnemyAttack : MonoBehaviour
             bool isCurrentAnimatorStateEqualsDefault = currentAnimatorStateInfo.IsName("Idle");
             if (isCurrentAnimatorStateEqualsDefault)
             {
-                Debug.Log(isAttacking);
                 ChangeAnimationAction?.Invoke("Attack", true);
                 ChangeAnimationAction?.Invoke("Idle", false);
                 // if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)

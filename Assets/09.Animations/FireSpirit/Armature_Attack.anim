@@ -5482,6 +5482,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 2.875
+    functionName: FireBullet
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.875
     functionName: ChangeStateToTrueAnimation
     data: Idle
     objectReferenceParameter: {fileID: 0}

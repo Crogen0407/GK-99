@@ -7,6 +7,7 @@ public class EnemyAnimator : MonoBehaviour
     //Components
     public Animator _animator;
     private EnemyAttack _enemyAttack;
+    private EnemyMovement _enemyMovement;
     
     //Managements
     private GameManager _gameManager;
@@ -17,6 +18,7 @@ public class EnemyAnimator : MonoBehaviour
     void Awake()    
     {
         _enemyAttack = GetComponentInParent<EnemyAttack>();
+        _enemyMovement = _enemyAttack.GetComponent<EnemyMovement>();
         _animator = GetComponent<Animator>();
         _enemyAttack.ChangeAnimationAction += ChangeAnimation;
         _enemyAttack.ChangeAnimationGameOverAction += ChangeAnimationGameOver;
@@ -68,9 +70,12 @@ public class EnemyAnimator : MonoBehaviour
 
     public void FireBullet()
     {
-        _effectController.CreateEffect("EnemyBullet", transform.position,
+        GameObject gameObject = _effectController.CreateEffect("EnemyBullet", transform.position,
             Quaternion.Euler(0, _enemyAttack.transform.eulerAngles.y, 0), 10);
+
+        gameObject.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 20;
     }
+    
     
     public void CreateAttackEffect(float direction)
     {

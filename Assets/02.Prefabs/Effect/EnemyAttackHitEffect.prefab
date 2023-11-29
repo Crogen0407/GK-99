@@ -14670,7 +14670,7 @@ GameObject:
   - component: {fileID: 4932672573202751521}
   - component: {fileID: 5855264542837496473}
   m_Layer: 0
-  m_Name: EnemyDieEffect
+  m_Name: EnemyAttackHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

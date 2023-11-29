@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     float _viewRadius = 1f;
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstacleMask;
-    private Vector3 _moveDirection;
+    public Vector3 moveDirection;
 
     private bool _move;
 
@@ -33,20 +33,21 @@ public class EnemyMovement : MonoBehaviour
         set
         {
             _move = value;
-            
         }
     }
     
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _agent = GetComponent<NavMeshAgent>();
-        _enemyAttack = GetComponent<EnemyAttack>();
-        _enemyAnimator = transform.Find("FireSpirit").GetComponent<EnemyAnimator>();
+        
     }
 
     void Start()
     {
+        _rigidbody = GetComponent<Rigidbody>();
+        _agent = GetComponent<NavMeshAgent>();
+        _enemyAttack = GetComponent<EnemyAttack>();
+        _enemyAnimator = transform.Find("FireSpirit").GetComponent<EnemyAnimator>();
+        
         _gameManager = GameManager.Instance;
         //_animator = transform.Find("Model").GetComponent<Animator>();
         _agent.speed = enemyData.moveSpeed;
@@ -82,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void CheckCollider()
     {
-        Collider[] target = Physics.OverlapSphere(_moveDirection, _viewRadius, _targetMask);
+        Collider[] target = Physics.OverlapSphere(moveDirection, _viewRadius, _targetMask);
 
         if (target.Length == 0) return;
         Vector3 targetDir = Vector3.zero;
@@ -90,14 +91,14 @@ public class EnemyMovement : MonoBehaviour
         foreach (Collider coll in target)
         {
             Vector3 targetVec = coll.transform.position;
-            targetDir = (targetVec - _moveDirection).normalized;
+            targetDir = (targetVec - moveDirection).normalized;
             float targetAngle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(transform.forward, targetDir));
             if (targetAngle  <= _viewAngle * 0.5f)
             {
                 _enemyAttack.playerToMyDistance = Vector3.Distance(transform.position, coll.transform.position);
                 float distance = Vector3.Distance(coll.transform.position, transform.position);
-                Debug.DrawRay(_moveDirection, targetDir * _enemyAttack.playerToMyDistance, Color.green);
-                if (!Physics.Raycast(_moveDirection, targetDir * distance, distance, _obstacleMask))
+                Debug.DrawRay(moveDirection, targetDir * _enemyAttack.playerToMyDistance, Color.green);
+                if (!Physics.Raycast(moveDirection, targetDir * distance, distance, _obstacleMask))
                 {
                     _enemyAnimator.GetCurrentAnimatorStateInformation();
                     if (_enemyAttack.playerToMyDistance < 10)
@@ -119,8 +120,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (DebugMode)
         {
-            _moveDirection = transform.position + Offset;
-            Gizmos.DrawWireSphere(_moveDirection, _viewRadius);
+            moveDirection = transform.position + Offset;
+            Gizmos.DrawWireSphere(moveDirection, _viewRadius);
 
             Vector3 rightDir = AngleToDir(transform.eulerAngles.y + _viewAngle * 0.5f);
             Vector3 leftDir = AngleToDir(transform.eulerAngles.y - _viewAngle * 0.5f);;
