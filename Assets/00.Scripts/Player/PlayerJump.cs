@@ -64,8 +64,6 @@ public class PlayerJump : MonoBehaviour, IConsoleText
     {
         if (isGrounded)
         {
-            _gameManager.cameraShakeController.Shake(5);
-            
             _effectController.CreateEffect("LandingEffect", transform.position - new Vector3(0, 1, 0),
                 Quaternion.identity, 2);
         }

@@ -70,11 +70,6 @@ public class PlayerAttack : MonoBehaviour, IConsoleText
                             ChangeAnimationAction?.Invoke("Direction", true);
                         }
                     }
-
-                    if (currentAttackMode == Attack.JAP)
-                    {
-                        _rigidbody.AddForce(Camera.main.transform.forward * -20, ForceMode.Impulse);
-                    }
                 }
             }
         }

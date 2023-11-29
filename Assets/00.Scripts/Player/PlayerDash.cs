@@ -99,7 +99,7 @@ public class PlayerDash : MonoBehaviour, IConsoleText
         {
             Vector3 directionVector = new Vector3(90, 0,
                 Camera.main.transform.eulerAngles.y - 180);
-            _effectController.CreateEffect("LandingEffect", hitWallPosition, Quaternion.Euler(directionVector), 2);
+            _effectController.CreateEffect("LandingEffect", hitWallPosition, Quaternion.Euler(directionVector), 3);
         }
     }
     

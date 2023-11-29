@@ -1,18 +1,43 @@
 ﻿using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
 public class CameraShakeController : MonoBehaviour
 {
-    private CinemachineImpulseSource _cameraCinemachine;
+    private CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
 
-    private void Awake()
+    private void Start()
     {
-        _cameraCinemachine = GetComponent<CinemachineImpulseSource>();
+        _cinemachineBasicMultiChannelPerlin = CinemachinePOVExtension.Instance.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public void Shake(float power)
+
+    public void Shake(float amplitudeGain, float frequencyGain)
     {
-        _cameraCinemachine.GenerateImpulse(power);
+        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amplitudeGain;
+        _cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequencyGain;
     }
+    
+    public void EndShake()
+    {
+        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        _cinemachineBasicMultiChannelPerlin.m_FrequencyGain = 0;
+    }
+
+    public void Shake(float amplitudeGain, float frequencyGain, float duration)
+    {
+        StopCoroutine(CameraShake(amplitudeGain, frequencyGain, duration));
+        StartCoroutine(CameraShake(amplitudeGain, frequencyGain, duration));
+    }
+
+    private IEnumerator CameraShake(float amplitudeGain, float frequencyGain, float duration)
+    {
+        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain += amplitudeGain;
+        _cinemachineBasicMultiChannelPerlin.m_FrequencyGain += frequencyGain;
+        yield return new WaitForSeconds(duration);
+        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain -= amplitudeGain;
+        _cinemachineBasicMultiChannelPerlin.m_FrequencyGain -= frequencyGain;
+    }
+
 }

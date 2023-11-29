@@ -3,6 +3,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour, IConsoleText
 {
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
     private HealthSystem _healthSystem;
     private PlayerDash _playerDash;
     private PlayerJump _playerJump;
+    private CameraShakeController _cameraShakeController;
     
     //Action
     float clampingNumberX = 0;
@@ -50,9 +52,12 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
     {
         _gameManager = GameManager.Instance;
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
-        
+
+        _cameraShakeController = _gameManager.cameraShakeController;
         _consoleTextController = _gameManager.consoleTextController;
         _screenEffectController = _gameManager.screenEffectController;
+
+        _isWalking = false;
     }
 
     //Set Move Direction
@@ -74,6 +79,7 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
         moveDirection = new Vector3(orientation.forward.x,0,orientation.forward.z) * verticalInput + orientation.right * horizontalInput;
     }
 
+    private bool _isWalking = false;
     private void Move()
     {
         if (_playerDash.dashing == true) return;
@@ -86,12 +92,19 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
         {
             if (_playerJump.Jumping == true)
             {
-                return;
+                _cameraShakeController.EndShake();
+                return; 
             }
+            _cameraShakeController.Shake(Random.Range(0.4f, 1), 0.1f);
             _screenEffectController.SetBool("Breathing", false);
+            _isWalking = true;
         }
         else
         {
+            if (_isWalking == true)
+            {
+                _cameraShakeController.EndShake();
+            }
             _screenEffectController.SetBool("Breathing", true);
         }
     }
