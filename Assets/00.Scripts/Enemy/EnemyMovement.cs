@@ -83,6 +83,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void CheckCollider()
     {
+        moveDirection = transform.position + Offset;
         Collider[] target = Physics.OverlapSphere(moveDirection, _viewRadius, _targetMask);
 
         if (target.Length == 0) return;
@@ -104,7 +105,7 @@ public class EnemyMovement : MonoBehaviour
                     if (_enemyAttack.playerToMyDistance < 10)
                     {
                         _agent.SetDestination(transform.position);
-                        _enemyAttack.OnAttack();
+                        _enemyAttack.OnAttack(); 
                         transform.forward = targetDir;
                     }
                     else
@@ -120,7 +121,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (DebugMode)
         {
-            moveDirection = transform.position + Offset;
             Gizmos.DrawWireSphere(moveDirection, _viewRadius);
 
             Vector3 rightDir = AngleToDir(transform.eulerAngles.y + _viewAngle * 0.5f);

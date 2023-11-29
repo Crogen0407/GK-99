@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 99c9720ab356a0642a771bea13969a05
+  m_OcclusionCullingData: {fileID: 36300000, guid: bf14b4b9035640d45bb91baa4d9d735a,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -13148,6 +13149,104 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &331312733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331312736}
+  - component: {fileID: 331312735}
+  - component: {fileID: 331312734}
+  m_Layer: 0
+  m_Name: CameraShackController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &331312734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331312733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd2c41eb54846ec9f1e1e27a055d605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &331312735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331312733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 0
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 3
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!4 &331312736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331312733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &331831884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14132,10 +14231,12 @@ GameObject:
   - component: {fileID: 373239224}
   - component: {fileID: 373239213}
   - component: {fileID: 373239225}
+  - component: {fileID: 373239230}
   - component: {fileID: 373239219}
+  - component: {fileID: 373239226}
+  - component: {fileID: 373239229}
   - component: {fileID: 373239214}
   - component: {fileID: 373239215}
-  - component: {fileID: 373239226}
   - component: {fileID: 373239227}
   - component: {fileID: 373239228}
   m_Layer: 8
@@ -14242,7 +14343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e16e2492ba3354d9d36c7eafc4e076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _condition: 0
+  condition: 0
   hp: 3
 --- !u!114 &373239223
 MonoBehaviour:
@@ -14405,6 +14506,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &373239229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373239211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f6d325fc1d45d6bf9c97eedd06b925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &373239230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373239211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438d65893d444101bba103b88d9be3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &375342950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47872,6 +47997,7 @@ GameObject:
   - component: {fileID: 939991553}
   - component: {fileID: 939991552}
   - component: {fileID: 939991554}
+  - component: {fileID: 939991555}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -47950,6 +48076,29 @@ MonoBehaviour:
   sensY: 230
   _minRotateX: -45
   _maxRotateX: 60
+--- !u!114 &939991555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939991551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &946067192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70183,6 +70332,7 @@ MonoBehaviour:
   consoleTextController: {fileID: 0}
   effectController: {fileID: 0}
   screenEffectController: {fileID: 0}
+  cameraShakeController: {fileID: 0}
   isUIMode: 0
 --- !u!4 &1499654786
 Transform:
@@ -79605,9 +79755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 2
-  m_FrequencyGain: 0.06
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 25
+  mNoiseOffsets: {x: 404.80182, y: 766.67017, z: -756.923}
 --- !u!114 &1906398801
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -94507,6 +94657,7 @@ SceneRoots:
   - {fileID: 1845796497}
   - {fileID: 1632176678}
   - {fileID: 2097396748}
+  - {fileID: 331312736}
   - {fileID: 789190829}
   - {fileID: 904673936}
   - {fileID: 832575519}

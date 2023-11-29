@@ -17,10 +17,6 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: LandingEffect
     poolCount: 20
-  - prefab: {fileID: 3424141713952526106, guid: 24ef5292b1c338f4dbc08c8a1930fd2e,
-      type: 3}
-    prefabTypeName: Enemy
-    poolCount: 10
   - prefab: {fileID: 5945122687905181306, guid: 368aa640e0cc2d04e8060e3fe857df16,
       type: 3}
     prefabTypeName: PlayerAttackEffect
@@ -29,15 +25,19 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: FireSpirit
     poolCount: 0
-  - prefab: {fileID: 8720369608669802242, guid: 2bdbc10aceab4d747bfb7fc05236ca0a,
-      type: 3}
-    prefabTypeName: EnemyAttackHitEffect
-    poolCount: 30
   - prefab: {fileID: 8323958943172105503, guid: 75adb22e021a718488106794fa903c98,
       type: 3}
     prefabTypeName: LightningBall
     poolCount: 20
+  - prefab: {fileID: 3424141713952526106, guid: 24ef5292b1c338f4dbc08c8a1930fd2e,
+      type: 3}
+    prefabTypeName: Enemy
+    poolCount: 10
   - prefab: {fileID: 2693481883520101177, guid: fd235735191091040b073fadd809e593,
       type: 3}
     prefabTypeName: EnemyBullet
-    poolCount: 100
+    poolCount: 50
+  - prefab: {fileID: 8720369608669802242, guid: 2bdbc10aceab4d747bfb7fc05236ca0a,
+      type: 3}
+    prefabTypeName: EnemyAttackHitEffect
+    poolCount: 30

@@ -11,6 +11,7 @@ public class ScreenEffectController : MonoBehaviour
     public void Awake()
     {
         material.SetInt("_Breathing", Convert.ToInt32(BreathingOff));
+        material.SetInt("_Noising", Convert.ToInt32(false));
     }
 
     public void SetBool(string name, bool value)
@@ -18,6 +19,4 @@ public class ScreenEffectController : MonoBehaviour
         name = name[0] == '_' ? name[0] + name.Substring(1) : "_"+name;
         material.SetInt(name, Convert.ToInt32(value));
     }
-
-
 }

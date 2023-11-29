@@ -54,12 +54,6 @@ public class EnemyAttack : MonoBehaviour
             {
                 ChangeAnimationAction?.Invoke("Attack", true);
                 ChangeAnimationAction?.Invoke("Idle", false);
-                // if (attackDelayTime > currentAnimatorStateInfo.length+0.1f)
-                // {
-                //     attackDelayTime = 0;
-                //     ChangeAnimationAction?.Invoke("Attack", true);
-                //     ChangeAnimationAction?.Invoke("Idle", false);
-                // }
             }
         }
     }

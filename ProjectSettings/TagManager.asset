@@ -9,6 +9,7 @@ TagManager:
   - PlayerAttack
   - Enemy
   - PlayerAttack_Strike
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

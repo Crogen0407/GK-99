@@ -22,6 +22,7 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
     public ConsoleTextController consoleTextController;
     public EffectController effectController;
     public ScreenEffectController screenEffectController;
+    public CameraShakeController cameraShakeController;
     
     public bool isUIMode;
     private bool gameOver;
@@ -53,7 +54,8 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         PlayerAttack = playerMovement.GetComponent<PlayerAttack>();
         playerHealthSystem = playerMovement.transform.GetComponent<HealthSystem>();
-        
+
+        cameraShakeController = FindObjectOfType<CameraShakeController>();
         consoleTextController = FindObjectOfType<ConsoleTextController>();
         effectController = FindObjectOfType<EffectController>();
         screenEffectController = FindObjectOfType<ScreenEffectController>();

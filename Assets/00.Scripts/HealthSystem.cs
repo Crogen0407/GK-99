@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public Condition _condition;
+    public Condition condition;
 
     private EnemyState _enemyState;
     
@@ -16,7 +16,6 @@ public class HealthSystem : MonoBehaviour
 
     private void Awake()
     {
-        _condition = Condition.GOOD;
         _enemyState = GetComponent<EnemyState>();
     }
 
@@ -25,20 +24,21 @@ public class HealthSystem : MonoBehaviour
         get => hp;
         set
         {
-            if (hp > value)
-            {
-                Damaged?.Invoke();
-            }
+            int currentHp = hp;
             hp = value;
-            
             if (hp > 0)
             {
                 switch (hp)
                 {
-                    case 3 : _condition = Condition.GOOD; break;
-                    case 2 : _condition = Condition.BAD; break;
-                    case 1 : _condition = Condition.DANGEROUS; break;
+                    case 3 : condition = Condition.GOOD; break;
+                    case 2 : condition = Condition.BAD; break;
+                    case 1 : condition = Condition.DANGEROUS; break;
                 }
+            }
+
+            if (currentHp > hp)
+            {
+                Damaged?.Invoke();
             }
             if (hp <= 0)
             {

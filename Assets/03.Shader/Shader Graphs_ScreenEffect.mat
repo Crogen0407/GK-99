@@ -44,7 +44,7 @@ Material:
     - _Breathing: 1
     - _CompleteNoise: 0
     - _IsNoising: 1
-    - _Noising: 0
+    - _Noising: 1
     - _NoisingEffect: 65.8
     - _Offset: 15.28
     - _OnlyWhiteAndBlack: 0

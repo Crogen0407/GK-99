@@ -86,15 +86,12 @@ public class PlayerMovement : MonoBehaviour, IConsoleText
         {
             if (_playerJump.Jumping == true)
             {
-                _cinemachinePovExtension.StartCameraShake(1.6f, 0.01f);
                 return;
             }
-            _cinemachinePovExtension.StartCameraShake(2f, 0.06f);
             _screenEffectController.SetBool("Breathing", false);
         }
         else
         {
-            _cinemachinePovExtension.StopCameraShake();
             _screenEffectController.SetBool("Breathing", true);
         }
     }

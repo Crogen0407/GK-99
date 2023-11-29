@@ -6,6 +6,7 @@ public class EffectController : MonoBehaviour
     private PoolManager _poolManager;
     [SerializeField] private Transform _platform;
     [SerializeField] private List<string> groundCheckableEffectNames;    
+    
     private void Start()
     {
         _poolManager = PoolManager.Instance;
