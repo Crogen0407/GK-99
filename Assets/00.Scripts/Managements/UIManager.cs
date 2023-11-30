@@ -27,12 +27,12 @@ public class UIManager : MonoSingleton<UIManager>
         
         //CommentPanel
         _commentPanel = _canvasTransform.Find("Comment").gameObject;
+        _commentText = _commentPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _commentTextY = _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>();
         _commentTextN = _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>();
         
         
         _consoleText = _canvasTransform.Find("ConsoleText").GetComponent<TextMeshProUGUI>();
-        _commentText = _commentPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _scoreText = _canvasTransform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
 
         _gameOverPanel = _canvasTransform.Find("GameOverPanel").gameObject;
