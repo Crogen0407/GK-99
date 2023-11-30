@@ -34,6 +34,7 @@ public class EnemyState : MonoBehaviour, ILife
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         _gameManager = GameManager.Instance;
         _poolManager = PoolManager.Instance;
+        _scoreManager = ScoreManager.Instance;
         _effectController = _gameManager.effectController;
         _healthSystem.Dead += Dead;
     }
@@ -45,14 +46,16 @@ public class EnemyState : MonoBehaviour, ILife
 
     public void Dead()
     {
-        PoolManager.Instance.Pop("LightningBall", transform.position, Quaternion.identity);
+        GameObject gameObject = PoolManager.Instance.Pop("LightningBall", transform.position + Vector3.up, Quaternion.identity);
+        if (gameObject != null)
+        {
+            gameObject.GetComponent<ItemMovement>().itemCount = myLevel * 10;
+        }
         Collider[] colliders = Physics.OverlapSphere(transform.position, 5, gameObject.layer);
         if (colliders.Length == 0)
         {
             _gameManager.TimeSlow(0.1f, 0.5f);
         }
-        _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity, 2);
-        _scoreManager.Score += myLevel * 10; 
-        _poolManager.Push("FireSpirit", gameObject);
+        _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity);
     }
 }
