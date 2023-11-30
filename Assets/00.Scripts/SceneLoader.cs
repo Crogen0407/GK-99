@@ -13,6 +13,7 @@ public class SceneLoader : MonoSingleton<SceneLoader>
     
     public static void LoadScene(string sceneName)
     {
+        Time.timeScale = 1;
         nextScene = sceneName;
         SceneManager.LoadScene("LoadingScene");
     }

@@ -12,6 +12,14 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private TextAsset _data;
     void Awake()
     {
+        
+    }
+
+    private void OnEnable()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Start()

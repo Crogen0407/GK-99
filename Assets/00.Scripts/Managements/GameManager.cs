@@ -51,6 +51,7 @@ public class GameManager : MonoSingleton<GameManager>, IConsoleText
     
     private void Awake()
     {
+        Time.timeScale = 1;
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         PlayerAttack = playerMovement.GetComponent<PlayerAttack>();
         playerHealthSystem = playerMovement.transform.GetComponent<HealthSystem>();

@@ -8,13 +8,17 @@ public class EnemyState : MonoBehaviour, ILife
 {
     public int myLevel = 1;
     
-    private Rigidbody _rigidbody;
-    private HealthSystem _healthSystem;
-    private AudioSource _audioSource;
+    
 
 
     private CinemachinePOVExtension _cinemachinePovExtension;
 
+    //Components
+    private Rigidbody _rigidbody;
+    private HealthSystem _healthSystem;
+    private AudioSource _audioSource;
+    private EnemyAnimator _enemyAnimator;
+    
     //Managements
     private GameManager _gameManager;
     private ScoreManager _scoreManager;
@@ -37,16 +41,17 @@ public class EnemyState : MonoBehaviour, ILife
         _scoreManager = ScoreManager.Instance;
         _effectController = _gameManager.effectController;
         _healthSystem.Dead += Dead;
+        _healthSystem.Damaged += Damaged;
     }
 
-    public void Damaged(Vector3 damagedDirection)
+    public void Damaged()
     {
-        Tweening.Instance.DOMove(_rigidbody, -damagedDirection + _rigidbody.position , 0.5f, EasingType.EaseInBack);
+        Tweening.Instance.DOMove(_rigidbody, -_healthSystem.damagedDirection * 10 , 0.5f, EasingType.EaseInBack);
     }
 
     public void Dead()
     {
-        GameObject gameObject = PoolManager.Instance.Pop("LightningBall", transform.position + Vector3.up, Quaternion.identity);
+        GameObject gameObject = PoolManager.Instance.Pop("LightningBall", transform.position + Vector3.up * 0.5f, Quaternion.identity);
         if (gameObject != null)
         {
             gameObject.GetComponent<ItemMovement>().itemCount = myLevel * 10;
@@ -57,5 +62,6 @@ public class EnemyState : MonoBehaviour, ILife
             _gameManager.TimeSlow(0.1f, 0.5f);
         }
         _effectController.CreateEffect("EnemyDieEffect", transform.position + Vector3.up * 1.5f, quaternion.identity);
+        _poolManager.Push("FireSpirit", this.gameObject);
     }
 }

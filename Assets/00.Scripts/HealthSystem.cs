@@ -6,14 +6,15 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public Condition condition;
-
+    public Vector3 damagedDirection;
+    
     private EnemyState _enemyState;
     private PlayerAttack _playerAttack;
     
     public Action Dead;
     public Action Damaged;
     
-    [SerializeField] private  int hp = 3;
+    [SerializeField] private int hp = 3;
 
     private void Awake()
     {
@@ -41,7 +42,6 @@ public class HealthSystem : MonoBehaviour
                     case 1 : condition = Condition.DANGEROUS; break;
                 }
             }
-
             if (currentHp > hp)
             {
                 Damaged?.Invoke();
@@ -55,8 +55,10 @@ public class HealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (_enemyState != null)
         {
+            damagedDirection = other.transform.position - transform.position;
             if (other.transform.CompareTag("PlayerAttack"))
             {
                 switch (_playerAttack.currentAttackMode)

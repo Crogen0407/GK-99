@@ -15,5 +15,5 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 500
   viewAngle: 360
-  viewRadius: 50
+  viewRadius: 25
   attackDistance: 5

@@ -10,16 +10,89 @@ public class UIManager : MonoSingleton<UIManager>
     private TextMeshProUGUI _consoleText;
     private TextMeshProUGUI _scoreText;
 
-    private Transform _commentTransform;
+    private GameObject _gameClearPanel;
+    private GameObject _commentPanel;
     private TextMeshProUGUI _commentText;
-
+    private GameObject _gameOverPanel;
+    
     private void Awake()
     {
         _canvasTransform = FindObjectOfType<Canvas>().transform;
+        _commentPanel = _canvasTransform.Find("Comment").gameObject;
+        
         _consoleText = _canvasTransform.Find("ConsoleText").GetComponent<TextMeshProUGUI>();
-        _commentTransform = _canvasTransform.Find("Comment");
-        _commentText = _commentTransform.Find("Text").GetComponent<TextMeshProUGUI>();
+        _commentText = _commentPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _scoreText = _canvasTransform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+
+        _gameOverPanel = _canvasTransform.Find("GameOverPanel").gameObject;
+    }
+
+    private int _selectCount = 0;
+
+    public int SelectCount
+    {
+        get => _selectCount;
+        set
+        {
+            if (1 < value)
+            {
+                _selectCount = 0;
+            }
+            else if(value < 0)
+            {
+                _selectCount = 1;
+            }
+            else
+            {
+                _selectCount = value;
+            }
+            _selectCount = Mathf.Clamp(_selectCount, 0, 1);
+            if (_selectCount == 0)
+            {
+                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
+                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N<";
+            }
+            else
+            {
+                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y<";
+                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
+            }
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnComment();
+        }
+
+        if (_commentPanel.activeSelf == true)
+        {
+            Time.timeScale = 0;
+            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                SelectCount++;
+            }
+            else if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                SelectCount--;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (SelectCount == 1)
+                {
+                    Time.timeScale = 1;
+                    SceneLoader.LoadScene("StartScene");
+                }
+                else
+                {
+                    _commentPanel.SetActive(false);
+                    Time.timeScale = 1;
+                }
+            }
+        }
+        
     }
 
     public void WriteConsoleText(string text)
@@ -30,5 +103,33 @@ public class UIManager : MonoSingleton<UIManager>
     public void WriteScoreText(string text)
     {
         _scoreText.text = text;
+    }
+
+    private void OnComment()
+    {
+        if (_commentPanel.activeSelf == false)
+        {
+            _commentPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            _commentPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void OnGameClear()
+    {
+        _gameClearPanel.SetActive(true);
+        _gameClearPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>().text =
+            $"<size=100>데모 버전은 여기까지 입니다</size>\n\n \n플레이해주셔서 감사합니다.\n\n본편은 2월 2일 steam에서 만나요.\n\nSCORE : {ScoreManager.Instance.Score.ToString("0000")}";
+        Time.timeScale = 0;
+    }
+    
+    public void OnGameOver()
+    {
+        _gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

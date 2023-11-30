@@ -8,6 +8,7 @@ public class PlayerHealthSystem : MonoBehaviour, ILife
     
     //Managements
     private GameManager _gameManager;
+    private UIManager _uiManager;
     
     //Controllers
     private ConsoleTextController _consoleTextController;
@@ -24,6 +25,8 @@ public class PlayerHealthSystem : MonoBehaviour, ILife
     private void Start()
     {
         _gameManager = GameManager.Instance;
+        _uiManager = UIManager.Instance;
+        
         _cinemachinePovExtension = CinemachinePOVExtension.Instance;
         _consoleTextController = _gameManager.consoleTextController;
         _screenEffectController = _gameManager.screenEffectController;
@@ -46,7 +49,7 @@ public class PlayerHealthSystem : MonoBehaviour, ILife
 
     public void Dead()
     {
-        
+        _uiManager.OnGameOver();
     }
 
     private void Damaged()
