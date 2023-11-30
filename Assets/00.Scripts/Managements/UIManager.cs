@@ -6,12 +6,16 @@ using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    private int _selectCount = 0;
     private Transform _canvasTransform;
     private TextMeshProUGUI _consoleText;
     private TextMeshProUGUI _scoreText;
 
     private GameObject _gameClearPanel;
     private GameObject _commentPanel;
+    private TextMeshProUGUI _commentTextY;
+    private TextMeshProUGUI _commentTextN;
+    
     private TextMeshProUGUI _commentText;
     private GameObject _gameOverPanel;
     
@@ -19,7 +23,12 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _canvasTransform = FindObjectOfType<Canvas>().transform;
         _gameClearPanel = _canvasTransform.Find("GameClearPanel").gameObject;
+        
+        //CommentPanel
         _commentPanel = _canvasTransform.Find("Comment").gameObject;
+        _commentTextY = _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>();
+        _commentTextN = _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>();
+        
         
         _consoleText = _canvasTransform.Find("ConsoleText").GetComponent<TextMeshProUGUI>();
         _commentText = _commentPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>();
@@ -28,7 +37,6 @@ public class UIManager : MonoSingleton<UIManager>
         _gameOverPanel = _canvasTransform.Find("GameOverPanel").gameObject;
     }
 
-    private int _selectCount = 0;
 
     public int SelectCount
     {
@@ -52,13 +60,11 @@ public class UIManager : MonoSingleton<UIManager>
             {
                 _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
                 _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N<";
-                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R";
             }
             else if(_selectCount == 1)
             {
                 _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y<";
                 _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
-                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R";
             }
             else
             {
@@ -133,14 +139,6 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public void OnGameClear()
-    {
-        _gameClearPanel.SetActive(true);
-        _gameClearPanel.transform.Find("Text").GetComponent<TextMeshProUGUI>().text =
-            $"<size=100>데모 버전은 여기까지 입니다</size>\n\n \n플레이해주셔서 감사합니다.\n\n본편은 2월 2일 steam에서 만나요.\n\nSCORE : {ScoreManager.Instance.Score.ToString("0000")}";
-        Time.timeScale = 0;
-    }
-    
     public void OnGameOver()
     {
         _gameOverPanel.SetActive(true);
