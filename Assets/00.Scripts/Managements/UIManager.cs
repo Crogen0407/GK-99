@@ -38,7 +38,6 @@ public class UIManager : MonoSingleton<UIManager>
         _gameOverPanel = _canvasTransform.Find("GameOverPanel").gameObject;
     }
 
-
     public int SelectCount
     {
         get => _selectCount;
@@ -69,6 +68,7 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -101,7 +101,6 @@ public class UIManager : MonoSingleton<UIManager>
                 }
             }
         }
-        
     }
 
     public void WriteConsoleText(string text)
