@@ -7,6 +7,7 @@ using UnityEngine;
 public class UIManager : MonoSingleton<UIManager>
 {
     private int _selectCount = 0;
+    [SerializeField] private int selectCountMax;
     private Transform _canvasTransform;
     private TextMeshProUGUI _consoleText;
     private TextMeshProUGUI _scoreText;
@@ -43,34 +44,28 @@ public class UIManager : MonoSingleton<UIManager>
         get => _selectCount;
         set
         {
-            if (2 < value)
+            if (selectCountMax < value)
             {
                 _selectCount = 0;
             }
             else if(value < 0)
             {
-                _selectCount = 2;
+                _selectCount = selectCountMax;
             }
             else
             {
                 _selectCount = value;
             }
-            _selectCount = Mathf.Clamp(_selectCount, 0, 2);
+            _selectCount = Mathf.Clamp(_selectCount, 0, selectCountMax);
             if (_selectCount == 0)
             {
-                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
-                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N<";
+                _commentTextY.text = "Y";
+                _commentTextN.text = "N<";
             }
             else if(_selectCount == 1)
             {
-                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y<";
-                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
-            }
-            else
-            {
-                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
-                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
-                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R<";
+                _commentTextY.text = "Y<";
+                _commentTextN.text = "N";
             }
         }
     }
@@ -102,13 +97,7 @@ public class UIManager : MonoSingleton<UIManager>
                 }
                 else if(SelectCount == 0)
                 {
-                    _commentPanel.SetActive(false);
-                    Time.timeScale = 1;
-                }
-                else if(SelectCount == 2)
-                {
-                    Time.timeScale = 1;
-                    SceneLoader.LoadScene("GameScene_0");
+                    OnComment();
                 }
             }
         }
@@ -127,16 +116,9 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void OnComment()
     {
-        if (_commentPanel.activeSelf == false)
-        {
-            _commentPanel.SetActive(true);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            _commentPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
+        bool active = _commentPanel.activeSelf;
+        _commentPanel.SetActive(active == true ? false : true);
+        Time.timeScale = Convert.ToInt32(active);
     }
 
     public void OnGameOver()
