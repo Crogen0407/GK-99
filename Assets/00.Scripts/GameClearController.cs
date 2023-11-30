@@ -7,15 +7,16 @@ public class GameClearController : MonoBehaviour
 {
     private void FixedUpdate()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, 10, LayerMask.GetMask("Enemy"));
+        Collider[] col = Physics.OverlapSphere(transform.position, 15, LayerMask.GetMask("Enemy"));
+        Debug.Log(col.Length);
         if (col.Length == 0)
         {
             UIManager.Instance.OnGameClear();
         }
     }
 
-    private void OnGUI()
+    private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, 10);
+        Gizmos.DrawSphere(transform.position, 15);
     }
 }

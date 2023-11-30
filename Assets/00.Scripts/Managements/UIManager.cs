@@ -18,6 +18,7 @@ public class UIManager : MonoSingleton<UIManager>
     private void Awake()
     {
         _canvasTransform = FindObjectOfType<Canvas>().transform;
+        _gameClearPanel = _canvasTransform.Find("GameClearPanel").gameObject;
         _commentPanel = _canvasTransform.Find("Comment").gameObject;
         
         _consoleText = _canvasTransform.Find("ConsoleText").GetComponent<TextMeshProUGUI>();
@@ -34,28 +35,36 @@ public class UIManager : MonoSingleton<UIManager>
         get => _selectCount;
         set
         {
-            if (1 < value)
+            if (2 < value)
             {
                 _selectCount = 0;
             }
             else if(value < 0)
             {
-                _selectCount = 1;
+                _selectCount = 2;
             }
             else
             {
                 _selectCount = value;
             }
-            _selectCount = Mathf.Clamp(_selectCount, 0, 1);
+            _selectCount = Mathf.Clamp(_selectCount, 0, 2);
             if (_selectCount == 0)
             {
                 _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
                 _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N<";
+                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R";
             }
-            else
+            else if(_selectCount == 1)
             {
                 _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y<";
                 _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
+                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R";
+            }
+            else
+            {
+                _commentText.transform.Find("Y").GetComponent<TextMeshProUGUI>().text = "Y";
+                _commentText.transform.Find("N").GetComponent<TextMeshProUGUI>().text = "N";
+                _commentText.transform.Find("R").GetComponent<TextMeshProUGUI>().text = "R<";
             }
         }
     }
@@ -85,10 +94,15 @@ public class UIManager : MonoSingleton<UIManager>
                     Time.timeScale = 1;
                     SceneLoader.LoadScene("StartScene");
                 }
-                else
+                else if(SelectCount == 0)
                 {
                     _commentPanel.SetActive(false);
                     Time.timeScale = 1;
+                }
+                else if(SelectCount == 2)
+                {
+                    Time.timeScale = 1;
+                    SceneLoader.LoadScene("GameScene_0");
                 }
             }
         }
