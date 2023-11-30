@@ -116,22 +116,6 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-   
-    private void OnDrawGizmos()
-    {
-        if (DebugMode)
-        {
-            Gizmos.DrawWireSphere(moveDirection, _viewRadius);
-
-            Vector3 rightDir = AngleToDir(transform.eulerAngles.y + _viewAngle * 0.5f);
-            Vector3 leftDir = AngleToDir(transform.eulerAngles.y - _viewAngle * 0.5f);;
-            Vector3 looktDir = transform.forward;
-            
-            Debug.DrawRay(transform.position, rightDir * _viewRadius, Color.magenta);
-            Debug.DrawRay(transform.position, leftDir * _viewRadius, Color.magenta);
-            Debug.DrawRay(transform.position, looktDir * _viewRadius, Color.green);
-        }
-    }
 
     private Vector3 AngleToDir(float angle)
     {

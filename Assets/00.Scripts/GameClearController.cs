@@ -16,6 +16,6 @@ public class GameClearController : MonoBehaviour
 
     private void OnGUI()
     {
-        Gizmos.DrawWireSphere(transform.position, 10);
+        Gizmos.DrawSphere(transform.position, 10);
     }
 }
